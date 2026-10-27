@@ -1,5 +1,5 @@
 -- ==========================================
--- 🐟 DEVOUR FISH SCRIPT (Final Release) 🐟
+-- 🐟 DEVOUR FISH SCRIPT (Legit XP Mode) 🐟
 -- ==========================================
 
 local Players = game:GetService("Players")
@@ -11,18 +11,17 @@ local LocalPlayer = Players.LocalPlayer
 local SelectFish = ReplicatedStorage:WaitForChild("SelectFish")
 local SpawnFish = ReplicatedStorage:WaitForChild("SpawnFish")
 local BiteFood = ReplicatedStorage:WaitForChild("BiteFood")
-local UpdateGrowth = ReplicatedStorage:WaitForChild("UpdateGrowth")
 local GiveFood = ReplicatedStorage:WaitForChild("GiveFood")
 local GainXP = ReplicatedStorage:WaitForChild("GainXP")
 local StatusHit = ReplicatedStorage:WaitForChild("StatusHit")
 local GetPlayerData = ReplicatedStorage:WaitForChild("GetPlayerData")
 
--- 🛑 PRIORITY LIST (Higher Number = Eaten First)
+-- 🛑 PRIORITY LIST
 local FoodPriority = {
     ["HalloweenPumpkins"] = 10, 
     ["RainbowCoral"] = 9, 
     ["GoldenCoral"] = 9,
-    ["SeaSponge"] = 8,       -- 888 XP!
+    ["SeaSponge"] = 8,
     ["Starfish"] = 7, 
     ["BigSeaweed"] = 6, 
     ["TallSeaweed"] = 5,
@@ -37,7 +36,7 @@ local FoodPriority = {
 local isFarming = false
 local hitboxEnabled = false
 local selectedFishId = "Fish_9MBlueWhale" 
-local originalSizes = {} -- Moved to the top to fix the Close button error
+local originalSizes = {}
 
 -- Cleanup old GUIs
 for _, name in pairs({"DevourFishGui", "UltimateFarmGui"}) do
@@ -46,7 +45,7 @@ for _, name in pairs({"DevourFishGui", "UltimateFarmGui"}) do
 end
 
 -- ==========================================
--- 1. CLEAN UI CREATION
+-- 1. UI CREATION
 -- ==========================================
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "DevourFishGui"
@@ -289,12 +288,8 @@ MinFrame.MouseButton1Click:Connect(function()
     MinFrame.Visible = false
 end)
 
--- FIXED CLOSE BUTTON
 CloseBtn.MouseButton1Click:Connect(function()
-    -- 1. Hide the GUI instantly so it feels responsive
     ScreenGui:Destroy() 
-    
-    -- 2. Safely reset hitboxes in the background
     pcall(function()
         for part, origSize in pairs(originalSizes) do
             if part and part.Parent then
@@ -332,7 +327,6 @@ ToggleHitboxBtn.MouseButton1Click:Connect(function()
     ToggleHitboxBtn.Text = "Hitbox Expander: " .. (hitboxEnabled and "ON" or "OFF")
     ToggleHitboxBtn.BackgroundColor3 = hitboxEnabled and Color3.fromRGB(52, 199, 89) or Color3.fromRGB(100, 100, 100)
     
-    -- Reset hitboxes when toggled off
     if not hitboxEnabled then
         for part, origSize in pairs(originalSizes) do
             if part and part.Parent then
@@ -348,12 +342,11 @@ ToggleHitboxBtn.MouseButton1Click:Connect(function()
 end)
 
 -- ==========================================
--- 6. HYPER-FAST TARGETING & BITING LOOP
+-- 6. SAFE TARGETING & BITING LOOP
 -- ==========================================
 local currentTarget = nil
 local idleTime = 0
 
--- Helper to find the best food on the map
 local function findBestFood()
     local bestFood = nil
     local highestPriority = -1
@@ -395,10 +388,9 @@ local function findBestFood()
 end
 
 task.spawn(function()
-    -- task.wait() without numbers runs as fast as the game frame rate (approx 60fps)
-    while task.wait() do
+    -- Wait 0.2s (5 bites a second). Fast enough for quick levels, slow enough to avoid server flags.
+    while task.wait(0.2) do
         if isFarming then
-            -- If we don't have a target, or the target was destroyed/eaten, find a new one
             if not currentTarget or not currentTarget.Parent then
                 currentTarget = findBestFood()
                 if currentTarget then
@@ -408,18 +400,19 @@ task.spawn(function()
 
             if currentTarget then
                 idleTime = 0
-                -- Spam bite the SAME target until it disappears
                 pcall(function()
+                    -- We only fire BiteFood now. The server handles the legit XP math.
                     BiteFood:FireServer(currentTarget, 3.07, true)
-                    UpdateGrowth:FireServer(50000, 0) 
                 end)
+                
+                -- Client side visual updates
                 if firesignal then
                     pcall(firesignal, GiveFood.OnClientEvent, 0.5, "bite")
                     pcall(firesignal, GainXP.OnClientEvent, 30)
                     pcall(firesignal, StatusHit.OnClientEvent)
                 end
             else
-                idleTime = idleTime + (1/60) -- roughly 0.016 per frame
+                idleTime = idleTime + 0.2
                 StatusLabel.Text = string.format("Status: No food. Refreshing in %.1fs...", math.max(0, 3 - idleTime))
                 if idleTime >= 3 then
                     StatusLabel.Text = "Status: Refreshing Fish..."
