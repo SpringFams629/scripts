@@ -1,6 +1,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local VirtualUser = game:GetService("VirtualUser")
 local LocalPlayer = Players.LocalPlayer
 
 local SelectFish = ReplicatedStorage:WaitForChild("SelectFish")
@@ -30,6 +31,7 @@ local FoodPriority = {
 
 local isFarming = false
 local hitboxEnabled = false
+local antiAfkEnabled = false
 local selectedFishId = "Fish_9MBlueWhale" 
 local originalSizes = {}
 
@@ -44,8 +46,8 @@ ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = game.CoreGui
 
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 320, 0, 320)
-MainFrame.Position = UDim2.new(0.5, -160, 0.5, -160)
+MainFrame.Size = UDim2.new(0, 320, 0, 365)
+MainFrame.Position = UDim2.new(0.5, -160, 0.5, -182)
 MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
 MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
@@ -193,9 +195,20 @@ ToggleHitboxBtn.TextSize = 14
 ToggleHitboxBtn.Parent = MainFrame
 Instance.new("UICorner", ToggleHitboxBtn).CornerRadius = UDim.new(0, 6)
 
+local ToggleAntiAfkBtn = Instance.new("TextButton")
+ToggleAntiAfkBtn.Size = UDim2.new(0.9, 0, 0, 35)
+ToggleAntiAfkBtn.Position = UDim2.new(0.05, 0, 0, 255)
+ToggleAntiAfkBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+ToggleAntiAfkBtn.Text = "Anti-AFK: OFF"
+ToggleAntiAfkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleAntiAfkBtn.Font = Enum.Font.GothamBold
+ToggleAntiAfkBtn.TextSize = 14
+ToggleAntiAfkBtn.Parent = MainFrame
+Instance.new("UICorner", ToggleAntiAfkBtn).CornerRadius = UDim.new(0, 6)
+
 local StatusLabel = Instance.new("TextLabel")
 StatusLabel.Size = UDim2.new(0.9, 0, 0, 30)
-StatusLabel.Position = UDim2.new(0.05, 0, 0, 260)
+StatusLabel.Position = UDim2.new(0.05, 0, 0, 305)
 StatusLabel.BackgroundTransparency = 1
 StatusLabel.Text = "Status: Waiting..."
 StatusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
@@ -317,6 +330,21 @@ ToggleHitboxBtn.MouseButton1Click:Connect(function()
             end
         end
         originalSizes = {}
+    end
+end)
+
+ToggleAntiAfkBtn.MouseButton1Click:Connect(function()
+    antiAfkEnabled = not antiAfkEnabled
+    ToggleAntiAfkBtn.Text = "Anti-AFK: " .. (antiAfkEnabled and "ON" or "OFF")
+    ToggleAntiAfkBtn.BackgroundColor3 = antiAfkEnabled and Color3.fromRGB(52, 199, 89) or Color3.fromRGB(100, 100, 100)
+end)
+
+LocalPlayer.Idled:Connect(function()
+    if antiAfkEnabled then
+        pcall(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new(0, 0))
+        end)
     end
 end)
 
