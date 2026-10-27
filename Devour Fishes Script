@@ -7,16 +7,31 @@ local LocalPlayer = Players.LocalPlayer
 local SelectFish = ReplicatedStorage:WaitForChild("SelectFish")
 local SpawnFish = ReplicatedStorage:WaitForChild("SpawnFish")
 local BiteFood = ReplicatedStorage:WaitForChild("BiteFood")
+local BiteCreature = ReplicatedStorage:FindFirstChild("BiteCreature")
 local GiveFood = ReplicatedStorage:WaitForChild("GiveFood")
 local GainXP = ReplicatedStorage:WaitForChild("GainXP")
 local StatusHit = ReplicatedStorage:WaitForChild("StatusHit")
 local GetPlayerData = ReplicatedStorage:WaitForChild("GetPlayerData")
 
 local FoodPriority = {
-    ["HalloweenPumpkins"] = 10, ["RainbowCoral"] = 9, ["GoldenCoral"] = 9,
-    ["SeaSponge"] = 8, ["Starfish"] = 7, ["BigSeaweed"] = 6, 
-    ["TallSeaweed"] = 5, ["Oyster"] = 4, ["Urchin"] = 3, 
-    ["RedCoral"] = 3, ["BlueCoral"] = 2, ["WhiteCoral"] = 1, ["Krill"] = 1
+    ["BigSeaweed"] = 8, 
+    ["TallSeaweed"] = 7,
+    ["SeaSponge"] = 6, 
+    ["RainbowCoral"] = 5, 
+    ["GoldenCoral"] = 4,
+    ["RedCoral"] = 4, 
+    ["BlueCoral"] = 4, 
+    ["WhiteCoral"] = 4, 
+    ["Oyster"] = 3, 
+    ["Krill"] = 3, 
+    ["KrillSwarm"] = 3,
+    ["HalloweenPumpkins"] = 2, 
+    ["BluePumpkin"] = 2, 
+    ["GreenPumpkin"] = 2, 
+    ["OrangePumpkin"] = 2, 
+    ["WhitePumpkin"] = 2,
+    ["Starfish"] = 1, 
+    ["Urchin"] = 1
 }
 
 local isFarming = false
@@ -24,6 +39,9 @@ local hitboxEnabled = false
 local antiAfkEnabled = false
 local selectedFishId = "Fish_9MBlueWhale" 
 local originalSizes = {}
+local currentTarget = nil
+local currentHighlight = nil
+local lastBiteTime = 0
 
 for _, name in pairs({"DevourFishGui", "UltimateFarmGui"}) do
     local old = game.CoreGui:FindFirstChild(name)
@@ -298,10 +316,23 @@ SpawnBtn.MouseButton1Click:Connect(function()
     StatusLabel.Text = "Status: Spawned!"
 end)
 
+local function setNoclip(state)
+    local myModel = workspace:FindFirstChild(LocalPlayer.Name)
+    if myModel then
+        for _, part in pairs(myModel:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = not state
+            end
+        end
+    end
+end
+
 ToggleFarmBtn.MouseButton1Click:Connect(function()
     isFarming = not isFarming
     ToggleFarmBtn.Text = "Auto Farm: " .. (isFarming and "ON" or "OFF")
     ToggleFarmBtn.BackgroundColor3 = isFarming and Color3.fromRGB(52, 199, 89) or Color3.fromRGB(255, 69, 58)
+    
+    setNoclip(isFarming)
 end)
 
 ToggleHitboxBtn.MouseButton1Click:Connect(function()
@@ -338,25 +369,27 @@ LocalPlayer.Idled:Connect(function()
     end
 end)
 
-local currentTarget = nil
-local idleTime = 0
-
 local function findBestFood()
     local bestFood = nil
     local highestPriority = -1
     local shortestDist = math.huge
     
-    local myChar = LocalPlayer.Character or workspace:FindFirstChild(LocalPlayer.Name)
-    local myPos = myChar and myChar:FindFirstChild("HumanoidRootPart") and myChar.HumanoidRootPart.Position or Vector3.new(0,0,0)
+    local myModel = workspace:FindFirstChild(LocalPlayer.Name)
+    local myPos = myModel and myModel:GetPivot().Position or Vector3.new(0,0,0)
 
     local function checkObject(obj)
         local priority = FoodPriority[obj.Name]
         if priority then
             local targetPos = nil
-            if obj:IsA("Model") then
-                targetPos = obj.PrimaryPart and obj.PrimaryPart.Position or obj:GetPivot().Position
-            elseif obj:IsA("BasePart") then
+            if obj:IsA("BasePart") then
                 targetPos = obj.Position
+            elseif obj:IsA("Model") then
+                if obj.PrimaryPart then
+                    targetPos = obj.PrimaryPart.Position
+                else
+                    local s, p = pcall(function() return obj:GetPivot().Position end)
+                    if s then targetPos = p end
+                end
             end
             
             if targetPos then
@@ -373,44 +406,106 @@ local function findBestFood()
         end
     end
 
-    for _, v in pairs(workspace:GetDescendants()) do checkObject(v) end
-    if getnilinstances then
-        local s, instances = pcall(getnilinstances)
-        if s and instances then for _, v in pairs(instances) do checkObject(v) end end
+    local liveFood = workspace:FindFirstChild("LiveFood")
+    if liveFood then
+        for _, v in pairs(liveFood:GetDescendants()) do checkObject(v) end
     end
+    
+    for _, v in pairs(workspace:GetDescendants()) do 
+        if not liveFood or not v:IsDescendantOf(liveFood) then
+            checkObject(v) 
+        end
+    end
+    
     return bestFood
 end
 
-task.spawn(function()
-    while task.wait(0.1) do
-        if isFarming then
-            if not currentTarget or not currentTarget.Parent then
-                currentTarget = findBestFood()
-                if currentTarget then
-                    StatusLabel.Text = "Status: Moving to " .. currentTarget.Name
+local function simulateClick(foodPos)
+    pcall(function()
+        local camera = workspace.CurrentCamera
+        local screenPos, onScreen = camera:WorldToViewportPoint(foodPos)
+        
+        local char = LocalPlayer.Character
+        if char then
+            local tool = char:FindFirstChildOfClass("Tool")
+            if not tool and LocalPlayer:FindFirstChild("Backpack") then
+                tool = LocalPlayer.Backpack:FindFirstChildOfClass("Tool")
+                if tool then
+                    tool.Parent = char
                 end
             end
+            if tool then
+                tool:Activate()
+            end
+        end
 
-            if currentTarget then
-                idleTime = 0
-                local myChar = LocalPlayer.Character or workspace:FindFirstChild(LocalPlayer.Name)
-                local humanoid = myChar and myChar:FindFirstChildOfClass("Humanoid")
+        if onScreen and VirtualUser then
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton1(Vector2.new(screenPos.X, screenPos.Y))
+        elseif mouse1click then
+            mouse1click()
+        end
+    end)
+end
+
+RunService.Stepped:Connect(function()
+    if isFarming then
+        setNoclip(true)
+        
+        if currentTarget and currentTarget.Parent then
+            local myModel = workspace:FindFirstChild(LocalPlayer.Name)
+            
+            local foodPos
+            if currentTarget:IsA("BasePart") then
+                foodPos = currentTarget.Position
+            elseif currentTarget:IsA("Model") then
+                foodPos = currentTarget.PrimaryPart and currentTarget.PrimaryPart.Position or currentTarget:GetPivot().Position
+            end
+            
+            if myModel and foodPos then
+                local myPos = myModel:GetPivot().Position
                 
-                if myChar and humanoid then
-                    local targetPos = currentTarget.PrimaryPart and currentTarget.PrimaryPart.Position or currentTarget:GetPivot().Position
-                    
-                    -- Use Humanoid:MoveTo() to trick the server into thinking we are walking
+                local myFlat = Vector3.new(myPos.X, 0, myPos.Z)
+                local foodFlat = Vector3.new(foodPos.X, 0, foodPos.Z)
+                local horizDist = (myFlat - foodFlat).Magnitude
+                
+                local extents = myModel:GetExtentsSize()
+                local stopDistance = math.max(5, extents.Magnitude / 2)
+                local distToFood = (myPos - foodPos).Magnitude
+                
+                local targetY = foodPos.Y
+                
+                if horizDist > 15 then
+                    targetY = foodPos.Y - 50
+                end
+                
+                local finalTarget = Vector3.new(foodPos.X, targetY, foodPos.Z)
+                
+                if horizDist > 15 or distToFood > stopDistance then
+                    local moveDir = (finalTarget - myPos).Unit
                     pcall(function()
-                        humanoid:MoveTo(targetPos)
+                        myModel:TranslateBy(moveDir * 8)
                     end)
                     
-                    local myPos = myChar:FindFirstChild("HumanoidRootPart") and myChar.HumanoidRootPart.Position or Vector3.new(0,0,0)
-                    local dist = (myPos - targetPos).Magnitude
-                    
-                    -- If we are close enough, bite it
-                    if dist < 15 then
+                    if horizDist > 15 then
+                        StatusLabel.Text = string.format("Traveling under map to %s", currentTarget.Name)
+                    else
+                        StatusLabel.Text = string.format("Rising to %s", currentTarget.Name)
+                    end
+                else
+                    if tick() - lastBiteTime > 0.25 then
+                        lastBiteTime = tick()
+                        StatusLabel.Text = "Biting " .. currentTarget.Name
+                        
+                        local realDist = (myPos - foodPos).Magnitude
+                        
                         pcall(function()
-                            BiteFood:FireServer(currentTarget, 3.07, true)
+                            BiteFood:FireServer(currentTarget, realDist, true)
+                            if BiteCreature then BiteCreature:FireServer(currentTarget) end
+                        end)
+                        
+                        task.spawn(function()
+                            simulateClick(foodPos)
                         end)
                         
                         if firesignal then
@@ -418,26 +513,33 @@ task.spawn(function()
                             pcall(firesignal, GainXP.OnClientEvent, 30)
                             pcall(firesignal, StatusHit.OnClientEvent)
                         end
-                    else
-                        StatusLabel.Text = "Status: Walking to food (" .. math.floor(dist) .. " studs)"
                     end
+                end
+            end
+        end
+    end
+end)
+
+task.spawn(function()
+    while task.wait(0.5) do
+        if isFarming then
+            if not currentTarget or not currentTarget.Parent then
+                currentTarget = findBestFood()
+                if currentTarget then
+                    if currentHighlight then currentHighlight:Destroy() end
+                    currentHighlight = Instance.new("Highlight")
+                    currentHighlight.FillColor = Color3.fromRGB(255, 0, 0)
+                    currentHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                    currentHighlight.Parent = currentTarget
                 else
-                    -- Fallback if Humanoid doesn't exist (Custom rigs)
-                    local targetPos = currentTarget.PrimaryPart and currentTarget.PrimaryPart.Position or currentTarget:GetPivot().Position
-                    pcall(function()
-                        myChar:PivotTo(CFrame.new(targetPos))
-                        BiteFood:FireServer(currentTarget, 3.07, true)
-                    end)
+                    StatusLabel.Text = "Searching for food..."
                 end
-            else
-                idleTime = idleTime + 0.1
-                StatusLabel.Text = string.format("Status: No food. Refreshing in %.1fs...", math.max(0, 3 - idleTime))
-                if idleTime >= 3 then
-                    StatusLabel.Text = "Status: Refreshing Fish..."
-                    refreshFish()
-                    idleTime = 0
-                    task.wait(1)
-                end
+            end
+        else
+            currentTarget = nil
+            if currentHighlight then 
+                currentHighlight:Destroy() 
+                currentHighlight = nil
             end
         end
     end
@@ -458,7 +560,7 @@ RunService.Heartbeat:Connect(function()
             end
         end
         for _, obj in pairs(workspace:GetDescendants()) do
-            if obj:IsA("Model") and (obj.Name:find("NPC") or obj.Name:find("Fish") or obj.Name:find("Enemy")) and obj ~= LocalPlayer.Character then
+            if obj:IsA("Model") and (obj.Name:find("NPC") or obj.Name:find("Fish") or obj.Name:find("Enemy")) and obj ~= workspace:FindFirstChild(LocalPlayer.Name) then
                 for _, part in pairs(obj:GetDescendants()) do
                     if part:IsA("BasePart") then
                         if not originalSizes[part] then originalSizes[part] = part.Size end
