@@ -1,22 +1,17 @@
--- ==========================================
--- 🐟 DEVOUR FISH SCRIPT (Anti-Rollback Fix) 🐟
--- ==========================================
-
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
--- Remotes
 local SelectFish = ReplicatedStorage:WaitForChild("SelectFish")
 local SpawnFish = ReplicatedStorage:WaitForChild("SpawnFish")
 local BiteFood = ReplicatedStorage:WaitForChild("BiteFood")
+local UpdateGrowth = ReplicatedStorage:WaitForChild("UpdateGrowth")
 local GiveFood = ReplicatedStorage:WaitForChild("GiveFood")
 local GainXP = ReplicatedStorage:WaitForChild("GainXP")
 local StatusHit = ReplicatedStorage:WaitForChild("StatusHit")
 local GetPlayerData = ReplicatedStorage:WaitForChild("GetPlayerData")
 
--- 🛑 PRIORITY LIST
 local FoodPriority = {
     ["HalloweenPumpkins"] = 10, 
     ["RainbowCoral"] = 9, 
@@ -38,15 +33,11 @@ local hitboxEnabled = false
 local selectedFishId = "Fish_9MBlueWhale" 
 local originalSizes = {}
 
--- Cleanup old GUIs
 for _, name in pairs({"DevourFishGui", "UltimateFarmGui"}) do
     local old = game.CoreGui:FindFirstChild(name)
     if old then old:Destroy() end
 end
 
--- ==========================================
--- 1. UI CREATION
--- ==========================================
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "DevourFishGui"
 ScreenGui.ResetOnSpawn = false
@@ -116,9 +107,6 @@ MinFrame.Draggable = true
 MinFrame.Parent = ScreenGui
 Instance.new("UICorner", MinFrame).CornerRadius = UDim.new(0, 8)
 
--- ==========================================
--- 2. DROPDOWN & REFRESH UI
--- ==========================================
 local DropdownLabel = Instance.new("TextLabel")
 DropdownLabel.Size = UDim2.new(0.9, 0, 0, 20)
 DropdownLabel.Position = UDim2.new(0.05, 0, 0, 45)
@@ -172,9 +160,6 @@ UIListLayout.Padding = UDim.new(0, 4)
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Parent = DropdownList
 
--- ==========================================
--- 3. BUTTONS & TOGGLES
--- ==========================================
 local SpawnBtn = Instance.new("TextButton")
 SpawnBtn.Size = UDim2.new(0.9, 0, 0, 35)
 SpawnBtn.Position = UDim2.new(0.05, 0, 0, 115)
@@ -218,9 +203,6 @@ StatusLabel.Font = Enum.Font.Gotham
 StatusLabel.TextSize = 13
 StatusLabel.Parent = MainFrame
 
--- ==========================================
--- 4. DROPDOWN LOGIC & FISH LOADING
--- ==========================================
 local function loadFishList()
     for _, v in pairs(DropdownList:GetChildren()) do
         if v:IsA("TextButton") then v:Destroy() end
@@ -275,9 +257,6 @@ end)
 
 task.spawn(loadFishList)
 
--- ==========================================
--- 5. UI BUTTON LOGIC
--- ==========================================
 MinBtn.MouseButton1Click:Connect(function()
     MainFrame.Visible = false
     MinFrame.Visible = true
@@ -341,9 +320,6 @@ ToggleHitboxBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- ==========================================
--- 6. TARGETING & BITING LOOP (NO FAKE XP)
--- ==========================================
 local currentTarget = nil
 local idleTime = 0
 
@@ -388,8 +364,7 @@ local function findBestFood()
 end
 
 task.spawn(function()
-    -- Wait 0.5s between bites to let the server register the XP naturally
-    while task.wait(0.5) do
+    while task.wait() do
         if isFarming then
             if not currentTarget or not currentTarget.Parent then
                 currentTarget = findBestFood()
@@ -400,18 +375,17 @@ task.spawn(function()
 
             if currentTarget then
                 idleTime = 0
-                -- We ONLY fire BiteFood. The server handles all the XP natively.
                 pcall(function()
                     BiteFood:FireServer(currentTarget, 3.07, true)
+                    UpdateGrowth:FireServer(50000, 0) 
                 end)
-                
                 if firesignal then
                     pcall(firesignal, GiveFood.OnClientEvent, 0.5, "bite")
                     pcall(firesignal, GainXP.OnClientEvent, 30)
                     pcall(firesignal, StatusHit.OnClientEvent)
                 end
             else
-                idleTime = idleTime + 0.5
+                idleTime = idleTime + (1/60)
                 StatusLabel.Text = string.format("Status: No food. Refreshing in %.1fs...", math.max(0, 3 - idleTime))
                 if idleTime >= 3 then
                     StatusLabel.Text = "Status: Refreshing Fish..."
@@ -424,9 +398,6 @@ task.spawn(function()
     end
 end)
 
--- ==========================================
--- 7. MASSIVE HITBOX EXPANDER
--- ==========================================
 RunService.Heartbeat:Connect(function()
     if hitboxEnabled then
         for _, player in pairs(Players:GetPlayers()) do
