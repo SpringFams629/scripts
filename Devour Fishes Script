@@ -1,5 +1,5 @@
 -- ==========================================
--- 🐟 DEVOUR FISH SCRIPT (Legit XP Mode) 🐟
+-- 🐟 DEVOUR FISH SCRIPT (Teleport & Legit XP) 🐟
 -- ==========================================
 
 local Players = game:GetService("Players")
@@ -342,7 +342,26 @@ ToggleHitboxBtn.MouseButton1Click:Connect(function()
 end)
 
 -- ==========================================
--- 6. SAFE TARGETING & BITING LOOP
+-- 6. FINDING YOUR IN-GAME FISH
+-- ==========================================
+local function getMyFish()
+    -- 1. Try standard workspace or Character
+    local char = workspace:FindFirstChild(LocalPlayer.Name) or LocalPlayer.Character
+    if char then return char end
+    
+    -- 2. Try hidden nil instances (Since Cobalt showed the game hides models)
+    if getnilinstances then
+        for _, obj in pairs(getnilinstances()) do
+            if obj.Name == LocalPlayer.Name and (obj:IsA("Model") or obj:IsA("BasePart")) then
+                return obj
+            end
+        end
+    end
+    return nil
+end
+
+-- ==========================================
+-- 7. SAFE TARGETING & BITING LOOP
 -- ==========================================
 local currentTarget = nil
 local idleTime = 0
@@ -352,8 +371,16 @@ local function findBestFood()
     local highestPriority = -1
     local shortestDist = math.huge
     
-    local myChar = LocalPlayer.Character or workspace:FindFirstChild(LocalPlayer.Name)
-    local myPos = myChar and myChar:FindFirstChild("HumanoidRootPart") and myChar.HumanoidRootPart.Position or Vector3.new(0,0,0)
+    local myFish = getMyFish()
+    local myPos = Vector3.new(0,0,0)
+    if myFish then
+        if myFish.PrimaryPart then myPos = myFish.PrimaryPart.Position
+        elseif myFish:FindFirstChild("HumanoidRootPart") then myPos = myFish.HumanoidRootPart.Position
+        else 
+            local s, p = pcall(function() return myFish:GetPivot().Position end)
+            if s then myPos = p end
+        end
+    end
 
     local function checkObject(obj)
         local priority = FoodPriority[obj.Name]
@@ -388,8 +415,7 @@ local function findBestFood()
 end
 
 task.spawn(function()
-    -- Wait 0.2s (5 bites a second). Fast enough for quick levels, slow enough to avoid server flags.
-    while task.wait(0.2) do
+    while task.wait(0.15) do
         if isFarming then
             if not currentTarget or not currentTarget.Parent then
                 currentTarget = findBestFood()
@@ -400,19 +426,38 @@ task.spawn(function()
 
             if currentTarget then
                 idleTime = 0
-                pcall(function()
-                    -- We only fire BiteFood now. The server handles the legit XP math.
-                    BiteFood:FireServer(currentTarget, 3.07, true)
-                end)
+                local myFish = getMyFish()
                 
-                -- Client side visual updates
-                if firesignal then
-                    pcall(firesignal, GiveFood.OnClientEvent, 0.5, "bite")
-                    pcall(firesignal, GainXP.OnClientEvent, 30)
-                    pcall(firesignal, StatusHit.OnClientEvent)
+                if myFish then
+                    local targetPos = currentTarget.PrimaryPart and currentTarget.PrimaryPart.Position or currentTarget:GetPivot().Position
+                    
+                    -- 1. Teleport our fish to the food so the server thinks we are legit
+                    pcall(function()
+                        if myFish.PrimaryPart then
+                            myFish:PivotTo(CFrame.new(targetPos))
+                        elseif myFish:FindFirstChild("HumanoidRootPart") then
+                            myFish.HumanoidRootPart.CFrame = CFrame.new(targetPos)
+                        elseif myFish:IsA("BasePart") then
+                            myFish.CFrame = CFrame.new(targetPos)
+                        end
+                    end)
+
+                    -- 2. Fire the bite remote (using legit distance of 3.07 since we are on top of it)
+                    pcall(function()
+                        BiteFood:FireServer(currentTarget, 3.07, true)
+                    end)
+                    
+                    -- 3. Client visuals
+                    if firesignal then
+                        pcall(firesignal, GiveFood.OnClientEvent, 0.5, "bite")
+                        pcall(firesignal, GainXP.OnClientEvent, 30)
+                        pcall(firesignal, StatusHit.OnClientEvent)
+                    end
+                else
+                    StatusLabel.Text = "Status: Could not find your fish model!"
                 end
             else
-                idleTime = idleTime + 0.2
+                idleTime = idleTime + 0.15
                 StatusLabel.Text = string.format("Status: No food. Refreshing in %.1fs...", math.max(0, 3 - idleTime))
                 if idleTime >= 3 then
                     StatusLabel.Text = "Status: Refreshing Fish..."
@@ -426,7 +471,7 @@ task.spawn(function()
 end)
 
 -- ==========================================
--- 7. MASSIVE HITBOX EXPANDER
+-- 8. MASSIVE HITBOX EXPANDER
 -- ==========================================
 RunService.Heartbeat:Connect(function()
     if hitboxEnabled then
