@@ -1,16 +1,16 @@
-local _0x2B63 = game:GetService("Players")
-local _0xF313 = game:GetService("ReplicatedStorage")
-local _0xD515 = game:GetService("RunService")
-local _0xDC4F = game:GetService("UserInputService")
-local _0x92FF = game:GetService("TweenService")
-local _0x5458 = game:GetService("HttpService")
-local _0x283A = _0x2B63.LocalPlayer
-local _0xBAF2 = falselocal _0x93D4 = _0xF313:WaitForChild("SelectFish", 10)
-local _0x0E92 = _0xF313:WaitForChild("SpawnFish", 10)
-local _0x7FE1 = _0xF313:WaitForChild("BiteFood", 10)
-local _0x8D05 = _0xF313:FindFirstChild("BiteCreature")
-local _0x2C40 = _0xF313:WaitForChild("GetPlayerData", 10)
-local _0xB948 = _0xF313:FindFirstChild("HealthChanged")local _0x4058 = {
+local _0xB81D = game:GetService("Players")
+local _0x18A0 = game:GetService("ReplicatedStorage")
+local _0x5D1C = game:GetService("RunService")
+local _0xDC44 = game:GetService("UserInputService")
+local _0x3A93 = game:GetService("TweenService")
+local _0xED31 = game:GetService("HttpService")
+local _0xA627 = _0xB81D.LocalPlayer
+local _0x45C0 = falselocal _0xBF61 = _0x18A0:WaitForChild("SelectFish", 10)
+local _0xC94D = _0x18A0:WaitForChild("SpawnFish", 10)
+local _0xB98B = _0x18A0:WaitForChild("BiteFood", 10)
+local _0x1F07 = _0x18A0:FindFirstChild("BiteCreature")
+local _0x22C5 = _0x18A0:WaitForChild("GetPlayerData", 10)
+local _0xA4A1 = _0x18A0:FindFirstChild("HealthChanged")local _0x9140 = {
 Bg = Color3.fromRGB(6, 6, 13),
 Panel = Color3.fromRGB(12, 12, 24),
 Card = Color3.fromRGB(18, 18, 34),
@@ -23,1049 +23,1049 @@ Text = Color3.fromRGB(255, 255, 255),
 TextDim = Color3.fromRGB(165, 165, 195),
 Danger = Color3.fromRGB(255, 80, 100)
 }
-local _0xFBD8 = {
-_0xE555 ="rbxassetid://104544677747631",
+local _0xB027 = {
+_0x8905 ="rbxassetid://104544677747631",
 Close ="rbxassetid://139375392432837",
 Minimize ="rbxassetid://121384759058183",
 Save ="rbxassetid://134994118685804",
 Load ="rbxassetid://140348363413163",
-}local _0xAC07 = true
-local _0x1EE3 = {}
-local function _0x6EBB(_0xCDA5) table.insert(_0x1EE3, _0xCDA5); return _0xCDA5 end
-local _0x0446 = {
+}local _0x3635 = true
+local _0x827F = {}
+local function _0x99D0(_0x24C0) table.insert(_0x827F, _0x24C0); return _0x24C0 end
+local _0x83EE = {
 Toggles = {
 Eat = false, KillNPC = false, KillPlayer = false, Hitbox = false, EventFarm = false,
 AutoHeal = false, AntiAfk = false, ESP = true, AutoLoad = true,
 FarmBelow = true, FaceTarget = true, Noclip = true, AutoThrottle = true, RecordBites = false, UseRecorded = false
 },
 Values = { FarmSpeed = 80, BiteDelay = 600, BelowOffset = 3, ESPTransparency = 50 },
-ESPColor = _0x4058.AccentLight,
+ESPColor = _0x9140.AccentLight,
 SelectedFish ="None", TargetPlayer = nil, NPCType ="None", EventType ="None",
 Keybinds = { UI = Enum.KeyCode.RightAlt, Eat = Enum.KeyCode.Unknown, KillNPC = Enum.KeyCode.Unknown, KillPlayer = Enum.KeyCode.Unknown, Hitbox = Enum.KeyCode.Unknown },
 ActiveConfig ="Default"}
-local _0xF135 = {
+local _0xD77B = {
 RainbowCoral = 10, GoldenCoral = 9, Oyster = 9, RedCoral = 8, BlueCoral = 8, WhiteCoral = 8,
 SeaSponge = 7, BigSeaweed = 6, TallSeaweed = 5, Starfish = 4, Krill = 3, Phytoplankton = 2
 }
-local _0x3D57 = 2.0local _0x7FE9 = 30local _0x4078 = (gethui and gethui()) or game:GetService("CoreGui")
-local _0x328D = Instance.new("ScreenGui")
-local _0x2146 = Instance.new("Folder")
-local function _0x5A02()
-_0xAC07 = false
-for _0x70AE, _0xCDA5 in pairs(_0x1EE3) do pcall(function() _0xCDA5:Disconnect() end) end
-pcall(function() _0x328D:Destroy() end)
-pcall(function() _0x2146:Destroy() end)
+local _0x7AC3 = 2.0local _0x3FB2 = 30local _0x1716 = (gethui and gethui()) or game:GetService("CoreGui")
+local _0x7689 = Instance.new("ScreenGui")
+local _0x2310 = Instance.new("Folder")
+local function _0xA915()
+_0x3635 = false
+for _0xDF0E, _0x24C0 in pairs(_0x827F) do pcall(function() _0x24C0:Disconnect() end) end
+pcall(function() _0x7689:Destroy() end)
+pcall(function() _0x2310:Destroy() end)
 print("[Quantum] Script Terminated.")
 end
-local function _0x0426(plr) return workspace:FindFirstChild(plr.Name) or plr.Character endlocal function _0x3465(class, props, parent)
-local _0x7487 = Instance.new(class)
-for _0xEFB3, _0xBBCC in pairs(props or {}) do _0x7487[_0xEFB3] = _0xBBCC end
-if parent then _0x7487.Parent = parent end
-return _0x7487
+local function _0x63DD(plr) return workspace:FindFirstChild(plr.Name) or plr.Character endlocal function _0xA493(class, props, parent)
+local _0x7542 = Instance.new(class)
+for _0x3A9C, _0x166D in pairs(props or {}) do _0x7542[_0x3A9C] = _0x166D end
+if parent then _0x7542.Parent = parent end
+return _0x7542
 end
-local function _0xD461(i, _0x4CDF) return _0x3465("UICorner", {CornerRadius = UDim.new(0, _0x4CDF)}, i) end
-local function _0x5126(i, color, th, tr) return _0x3465("UIStroke", {Color = color, Thickness = th or 1, Transparency = tr or 0, ApplyStrokeMode = Enum.ApplyStrokeMode.Border}, i) end
-local function _0xD1F5(i, c0, c1, rot) return _0x3465("UIGradient", {Color = ColorSequence.new(c0, c1), Rotation = rot or 0}, i) end
-local function _0x3F57(i, _0x95D3, props) _0x92FF:Create(i, TweenInfo.new(_0x95D3, Enum.EasingStyle.Quad), props):Play() end
-local function _0x03C2(_0xAFE2) local _0x1978 = (_0xAFE2:GetAttribute("n") or 0) + 1; _0xAFE2:SetAttribute("n", _0x1978); return _0x1978 end
-_0x328D.Name ="QuantumUI"_0x328D.ResetOnSpawn = false
-_0x328D.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-_0x328D.Parent = _0x4078
-_0x2146.Name ="QuantumESP"_0x2146.Parent = _0x4078local _0xDC29 = _0x3465("ImageLabel", {
+local function _0xED35(i, _0xDC11) return _0xA493("UICorner", {CornerRadius = UDim.new(0, _0xDC11)}, i) end
+local function _0x0806(i, color, th, tr) return _0xA493("UIStroke", {Color = color, Thickness = th or 1, Transparency = tr or 0, ApplyStrokeMode = Enum.ApplyStrokeMode.Border}, i) end
+local function _0x1B6B(i, c0, c1, rot) return _0xA493("UIGradient", {Color = ColorSequence.new(c0, c1), Rotation = rot or 0}, i) end
+local function _0x6187(i, _0xE38E, props) _0x3A93:Create(i, TweenInfo.new(_0xE38E, Enum.EasingStyle.Quad), props):Play() end
+local function _0x984D(_0x0C46) local _0x1F55 = (_0x0C46:GetAttribute("n") or 0) + 1; _0x0C46:SetAttribute("n", _0x1F55); return _0x1F55 end
+_0x7689.Name ="QuantumUI"_0x7689.ResetOnSpawn = false
+_0x7689.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+_0x7689.Parent = _0x1716
+_0x2310.Name ="QuantumESP"_0x2310.Parent = _0x1716local _0x03FE = _0xA493("ImageLabel", {
 Name ="Glow", BackgroundTransparency = 1, Position = UDim2.new(0.5, -440, 0.5, -290), Size = UDim2.new(0, 880, 0, 580),
-Image ="rbxassetid://6014261993", ImageColor3 = _0x4058.Accent, ImageTransparency = 0.55,
+Image ="rbxassetid://6014261993", ImageColor3 = _0x9140.Accent, ImageTransparency = 0.55,
 ScaleType = Enum.ScaleType.Slice, SliceCenter = Rect.new(49, 49, 450, 450), ZIndex = 0
-}, _0x328D)
-local _0x9E87 = _0x3465("Frame", {
+}, _0x7689)
+local _0xC954 = _0xA493("Frame", {
 Name ="Main", Size = UDim2.new(0, 840, 0, 540), Position = UDim2.new(0.5, -420, 0.5, -270),
-BackgroundColor3 = _0x4058.Bg, BorderSizePixel = 0, Active = true, ClipsDescendants = true, ZIndex = 1
-}, _0x328D)
-_0xD461(_0x9E87, 14)
-_0xD1F5(_0x9E87, Color3.fromRGB(30, 18, 58), _0x4058.Bg, 135)local _0x904E = _0x5126(_0x9E87, Color3.new(1, 1, 1), 1.6, 0.1)
-local _0x2EF0 = _0x3465("UIGradient", {
+BackgroundColor3 = _0x9140.Bg, BorderSizePixel = 0, Active = true, ClipsDescendants = true, ZIndex = 1
+}, _0x7689)
+_0xED35(_0xC954, 14)
+_0x1B6B(_0xC954, Color3.fromRGB(30, 18, 58), _0x9140.Bg, 135)local _0x4676 = _0x0806(_0xC954, Color3.new(1, 1, 1), 1.6, 0.1)
+local _0xB647 = _0xA493("UIGradient", {
 Color = ColorSequence.new{
-ColorSequenceKeypoint.new(0, _0x4058.Accent), ColorSequenceKeypoint.new(0.5, _0x4058.AccentLight), ColorSequenceKeypoint.new(1, _0x4058.Accent)
+ColorSequenceKeypoint.new(0, _0x9140.Accent), ColorSequenceKeypoint.new(0.5, _0x9140.AccentLight), ColorSequenceKeypoint.new(1, _0x9140.Accent)
 }
-}, _0x904E)
-_0x6EBB(_0xD515.Heartbeat:Connect(function() _0x2EF0.Rotation = (tick() * 45) % 360 end))local function _0x8A72(_0x1E30, _0x84F7, tr)
-local _0x7487 = _0x3465("Frame", {Size = UDim2.new(0, _0x1E30, 0, _0x1E30), Position = _0x84F7, BackgroundTransparency = 1, ZIndex = 1}, _0x9E87)
-_0xD461(_0x7487, _0x1E30); _0x5126(_0x7487, _0x4058.AccentLight, 1, tr)
-return _0x7487
+}, _0x4676)
+_0x99D0(_0x5D1C.Heartbeat:Connect(function() _0xB647.Rotation = (tick() * 45) % 360 end))local function _0xBF1F(_0x2846, _0x8116, tr)
+local _0x7542 = _0xA493("Frame", {Size = UDim2.new(0, _0x2846, 0, _0x2846), Position = _0x8116, BackgroundTransparency = 1, ZIndex = 1}, _0xC954)
+_0xED35(_0x7542, _0x2846); _0x0806(_0x7542, _0x9140.AccentLight, 1, tr)
+return _0x7542
 end
-_0x8A72(420, UDim2.new(1, -250, 0, -170), 0.93)
-_0x8A72(260, UDim2.new(1, -150, 0, -90), 0.9)
-_0x8A72(380, UDim2.new(0, -190, 1, -190), 0.94)local _0xB4F3 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 58), BackgroundColor3 = _0x4058.Panel, BackgroundTransparency = 0.25, BorderSizePixel = 0, ZIndex = 2}, _0x9E87)
-local _0xE8A7 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 1), Position = UDim2.new(0, 0, 1, -1), BorderSizePixel = 0, BackgroundColor3 = Color3.new(1, 1, 1), ZIndex = 3}, _0xB4F3)
-_0x3465("UIGradient", {Color = ColorSequence.new{
-ColorSequenceKeypoint.new(0, _0x4058.Accent), ColorSequenceKeypoint.new(0.5, _0x4058.AccentLight), ColorSequenceKeypoint.new(1, _0x4058.Accent)
-}, Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0.9), NumberSequenceKeypoint.new(0.5, 0.3), NumberSequenceKeypoint.new(1, 0.9)}}, _0xE8A7)
-local _0xE555 = _0x3465("ImageLabel", {Size = UDim2.new(0, 34, 0, 34), Position = UDim2.new(0, 16, 0.5, -17), BackgroundTransparency = 1, Image = _0xFBD8.Logo, ZIndex = 3}, _0xB4F3)
-local _0x072B = _0x3465("TextLabel", {
+_0xBF1F(420, UDim2.new(1, -250, 0, -170), 0.93)
+_0xBF1F(260, UDim2.new(1, -150, 0, -90), 0.9)
+_0xBF1F(380, UDim2.new(0, -190, 1, -190), 0.94)local _0xA347 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 58), BackgroundColor3 = _0x9140.Panel, BackgroundTransparency = 0.25, BorderSizePixel = 0, ZIndex = 2}, _0xC954)
+local _0x3A74 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 1), Position = UDim2.new(0, 0, 1, -1), BorderSizePixel = 0, BackgroundColor3 = Color3.new(1, 1, 1), ZIndex = 3}, _0xA347)
+_0xA493("UIGradient", {Color = ColorSequence.new{
+ColorSequenceKeypoint.new(0, _0x9140.Accent), ColorSequenceKeypoint.new(0.5, _0x9140.AccentLight), ColorSequenceKeypoint.new(1, _0x9140.Accent)
+}, Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0.9), NumberSequenceKeypoint.new(0.5, 0.3), NumberSequenceKeypoint.new(1, 0.9)}}, _0x3A74)
+local _0x8905 = _0xA493("ImageLabel", {Size = UDim2.new(0, 34, 0, 34), Position = UDim2.new(0, 16, 0.5, -17), BackgroundTransparency = 1, Image = _0xB027.Logo, ZIndex = 3}, _0xA347)
+local _0x66B3 = _0xA493("TextLabel", {
 Size = UDim2.new(0, 160, 0, 22), Position = UDim2.new(0, 58, 0, 10), BackgroundTransparency = 1, Text ="Quantum",
 Font = Enum.Font.GothamBlack, TextSize = 21, TextColor3 = Color3.new(1, 1, 1), TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 3
-}, _0xB4F3)
-_0xD1F5(_0x072B, _0x4058.AccentLight, Color3.fromRGB(190, 110, 255), 0)
-_0x3465("TextLabel", {
+}, _0xA347)
+_0x1B6B(_0x66B3, _0x9140.AccentLight, Color3.fromRGB(190, 110, 255), 0)
+_0xA493("TextLabel", {
 Size = UDim2.new(0, 200, 0, 16), Position = UDim2.new(0, 58, 0, 32), BackgroundTransparency = 1, Text ="Roblox Devour Fish  •  v2.0",
-Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = _0x4058.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 3
-}, _0xB4F3)local _0x6E4E = _0x3465("Frame", {Size = UDim2.new(0, 170, 0, 28), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, -120, 0.5, 0), BackgroundColor3 = _0x4058.Card, ZIndex = 3}, _0xB4F3)
-_0xD461(_0x6E4E, 14); _0x5126(_0x6E4E, _0x4058.Accent, 1, 0.6)
-local _0xB216 = _0x3465("Frame", {Size = UDim2.new(0, 8, 0, 8), Position = UDim2.new(0, 12, 0.5, -4), BackgroundColor3 = _0x4058.TextDim, ZIndex = 4}, _0x6E4E)
-_0xD461(_0xB216, 4)
-local _0x1F65 = _0x3465("TextLabel", {
+Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = _0x9140.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 3
+}, _0xA347)local _0xE328 = _0xA493("Frame", {Size = UDim2.new(0, 170, 0, 28), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, -120, 0.5, 0), BackgroundColor3 = _0x9140.Card, ZIndex = 3}, _0xA347)
+_0xED35(_0xE328, 14); _0x0806(_0xE328, _0x9140.Accent, 1, 0.6)
+local _0xCBBB = _0xA493("Frame", {Size = UDim2.new(0, 8, 0, 8), Position = UDim2.new(0, 12, 0.5, -4), BackgroundColor3 = _0x9140.TextDim, ZIndex = 4}, _0xE328)
+_0xED35(_0xCBBB, 4)
+local _0xCC01 = _0xA493("TextLabel", {
 Size = UDim2.new(1, -30, 1, 0), Position = UDim2.new(0, 28, 0, 0), BackgroundTransparency = 1, Text ="Idle",
-Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = _0x4058.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
-}, _0x6E4E)
-local function _0x2484(_0x950D, xOff, hoverColor)
-local _0xCA45 = _0x3465("TextButton", {
+Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = _0x9140.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
+}, _0xE328)
+local function _0x285D(_0x6F62, xOff, hoverColor)
+local _0x2E49 = _0xA493("TextButton", {
 Size = UDim2.new(0, 40, 0, 40), AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.new(1, xOff, 0.5, 0), BackgroundTransparency = 0,
-BackgroundColor3 = _0x4058.Bg, Text ="", AutoButtonColor = false, ZIndex = 3
-}, _0xB4F3)
-_0xD461(_0xCA45, 10); _0x5126(_0xCA45, hoverColor, 1.3, 0.3)
-_0x3465("ImageLabel", {
+BackgroundColor3 = _0x9140.Bg, Text ="", AutoButtonColor = false, ZIndex = 3
+}, _0xA347)
+_0xED35(_0x2E49, 10); _0x0806(_0x2E49, hoverColor, 1.3, 0.3)
+_0xA493("ImageLabel", {
 Size = UDim2.new(0, 26, 0, 26), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0.5, 0, 0.5, 0),
-BackgroundTransparency = 1, Image = _0x950D, ImageColor3 = Color3.new(1, 1, 1), ZIndex = 4
-}, _0xCA45)
-_0xCA45.MouseEnter:Connect(function() _0x3F57(_0xCA45, 0.15, {BackgroundColor3 = hoverColor}) end)
-_0xCA45.MouseLeave:Connect(function() _0x3F57(_0xCA45, 0.15, {BackgroundColor3 = _0x4058.Bg}) end)
-return _0xCA45
+BackgroundTransparency = 1, Image = _0x6F62, ImageColor3 = Color3.new(1, 1, 1), ZIndex = 4
+}, _0x2E49)
+_0x2E49.MouseEnter:Connect(function() _0x6187(_0x2E49, 0.15, {BackgroundColor3 = hoverColor}) end)
+_0x2E49.MouseLeave:Connect(function() _0x6187(_0x2E49, 0.15, {BackgroundColor3 = _0x9140.Bg}) end)
+return _0x2E49
 end
-local _0x9D36 = _0x2484(_0xFBD8.Minimize, -55, _0x4058.Accent2)
-local _0xE407 = _0x2484(_0xFBD8.Close, -10, _0x4058.Accent2)
-_0xE407.MouseButton1Click:Connect(_0x5A02)
-local _0xC1E5
-_0x9D36.MouseButton1Click:Connect(function()
-_0x9E87.Visible = false; _0xDC29.Visible = false
-if _0xC1E5 then _0xC1E5:Destroy() end
-_0xC1E5 = _0x3465("ImageButton", {
-Size = UDim2.new(0, 52, 0, 52), Position = UDim2.new(0, 20, 0, 20), BackgroundColor3 = _0x4058.Panel, Image = _0xFBD8.Logo, ImageTransparency = 0
-}, _0x328D)
-_0xD461(_0xC1E5, 26); _0x5126(_0xC1E5, _0x4058.AccentLight, 1.5, 0.2)
-_0x3465("UIPadding", {PaddingTop = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8), PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, _0xC1E5)
-_0xC1E5.MouseButton1Click:Connect(function()
-_0xC1E5:Destroy(); _0xC1E5 = nil
-_0x9E87.Visible = true; _0xDC29.Visible = true
+local _0xED55 = _0x285D(_0xB027.Minimize, -55, _0x9140.Accent2)
+local _0xEBC3 = _0x285D(_0xB027.Close, -10, _0x9140.Accent2)
+_0xEBC3.MouseButton1Click:Connect(_0xA915)
+local _0xA0B4
+_0xED55.MouseButton1Click:Connect(function()
+_0xC954.Visible = false; _0x03FE.Visible = false
+if _0xA0B4 then _0xA0B4:Destroy() end
+_0xA0B4 = _0xA493("ImageButton", {
+Size = UDim2.new(0, 52, 0, 52), Position = UDim2.new(0, 20, 0, 20), BackgroundColor3 = _0x9140.Panel, Image = _0xB027.Logo, ImageTransparency = 0
+}, _0x7689)
+_0xED35(_0xA0B4, 26); _0x0806(_0xA0B4, _0x9140.AccentLight, 1.5, 0.2)
+_0xA493("UIPadding", {PaddingTop = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8), PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, _0xA0B4)
+_0xA0B4.MouseButton1Click:Connect(function()
+_0xA0B4:Destroy(); _0xA0B4 = nil
+_0xC954.Visible = true; _0x03FE.Visible = true
 end)
-end)local _0x3D33, _0x3AA4, _0x0C07 = false
-_0xB4F3.InputBegan:Connect(function(i)
+end)local _0x6CFF, _0x6E6C, _0xF175 = false
+_0xA347.InputBegan:Connect(function(i)
 if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
-_0x3D33 = true; _0x3AA4 = i.Position; _0x0C07 = _0x9E87.Position
+_0x6CFF = true; _0x6E6C = i.Position; _0xF175 = _0xC954.Position
 end
 end)
-_0xB4F3.InputEnded:Connect(function(i)
-if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0x3D33 = false end
+_0xA347.InputEnded:Connect(function(i)
+if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0x6CFF = false end
 end)
-_0x6EBB(_0xDC4F.InputChanged:Connect(function(i)
-if _0x3D33 and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
-local _0x8A04 = i.Position - _0x3AA4
-_0x9E87.Position = UDim2.new(_0x0C07.X.Scale, _0x0C07.X.Offset + _0x8A04.X, _0x0C07.Y.Scale, _0x0C07.Y.Offset + _0x8A04.Y)
-_0xDC29.Position = UDim2.new(_0x9E87.Position.X.Scale, _0x9E87.Position.X.Offset - 20, _0x9E87.Position.Y.Scale, _0x9E87.Position.Y.Offset - 20)
+_0x99D0(_0xDC44.InputChanged:Connect(function(i)
+if _0x6CFF and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+local _0x66C0 = i.Position - _0x6E6C
+_0xC954.Position = UDim2.new(_0xF175.X.Scale, _0xF175.X.Offset + _0x66C0.X, _0xF175.Y.Scale, _0xF175.Y.Offset + _0x66C0.Y)
+_0x03FE.Position = UDim2.new(_0xC954.Position.X.Scale, _0xC954.Position.X.Offset - 20, _0xC954.Position.Y.Scale, _0xC954.Position.Y.Offset - 20)
 end
-end))local _0x00EA = _0x3465("TextButton", {Size = UDim2.new(0, 22, 0, 22), Position = UDim2.new(1, -22, 1, -22), BackgroundTransparency = 1, Text ="◢", TextColor3 = _0x4058.TextDim, TextSize = 14, ZIndex = 5}, _0x9E87)
-local _0x8D67 = false
-_0x00EA.MouseButton1Down:Connect(function() _0x8D67 = true end)
-_0x6EBB(_0xDC4F.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then _0x8D67 = false end end))
-_0x6EBB(_0xDC4F.InputChanged:Connect(function(i)
-if _0x8D67 and i.UserInputType == Enum.UserInputType.MouseMovement then
-local _0x91C4 = math.clamp(i.Position.X - _0x9E87.AbsolutePosition.X, 720, 1300)
-local _0xAB2F = math.clamp(i.Position.Y - _0x9E87.AbsolutePosition.Y, 440, 850)
-_0x9E87.Size = UDim2.new(0, _0x91C4, 0, _0xAB2F)
-_0xDC29.Size = UDim2.new(0, _0x91C4 + 40, 0, _0xAB2F + 40)
+end))local _0xE5AD = _0xA493("TextButton", {Size = UDim2.new(0, 22, 0, 22), Position = UDim2.new(1, -22, 1, -22), BackgroundTransparency = 1, Text ="◢", TextColor3 = _0x9140.TextDim, TextSize = 14, ZIndex = 5}, _0xC954)
+local _0xA563 = false
+_0xE5AD.MouseButton1Down:Connect(function() _0xA563 = true end)
+_0x99D0(_0xDC44.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then _0xA563 = false end end))
+_0x99D0(_0xDC44.InputChanged:Connect(function(i)
+if _0xA563 and i.UserInputType == Enum.UserInputType.MouseMovement then
+local _0xACA3 = math.clamp(i.Position.X - _0xC954.AbsolutePosition.X, 720, 1300)
+local _0x87CC = math.clamp(i.Position.Y - _0xC954.AbsolutePosition.Y, 440, 850)
+_0xC954.Size = UDim2.new(0, _0xACA3, 0, _0x87CC)
+_0x03FE.Size = UDim2.new(0, _0xACA3 + 40, 0, _0x87CC + 40)
 end
-end))local _0x7E45 = _0x3465("Frame", {Size = UDim2.new(0, 178, 1, -72), Position = UDim2.new(0, 12, 0, 66), BackgroundColor3 = _0x4058.Panel, BackgroundTransparency = 0.2, ZIndex = 2}, _0x9E87)
-_0xD461(_0x7E45, 12); _0x5126(_0x7E45, _0x4058.Accent, 1, 0.8)
-local _0xDDE4 = _0x3465("TextBox", {
-Size = UDim2.new(1, -20, 0, 32), Position = UDim2.new(0, 10, 0, 10), BackgroundColor3 = _0x4058.Card, Text ="", PlaceholderText ="🔍  Search tabs...",
-PlaceholderColor3 = _0x4058.TextDim, TextColor3 = _0x4058.Text, Font = Enum.Font.GothamMedium, TextSize = 13, ClearTextOnFocus = false, ZIndex = 3
-}, _0x7E45)
-_0xD461(_0xDDE4, 8); _0x5126(_0xDDE4, _0x4058.Accent, 1, 0.75)
-local _0x3417 = _0x3465("Frame", {Size = UDim2.new(1, -16, 1, -118), Position = UDim2.new(0, 8, 0, 50), BackgroundTransparency = 1, ZIndex = 3}, _0x7E45)
-_0x3465("UIListLayout", {Padding = UDim.new(0, 5), SortOrder = Enum.SortOrder.LayoutOrder}, _0x3417)local _0x48EB = _0x3465("Frame", {Size = UDim2.new(1, -16, 0, 52), Position = UDim2.new(0, 8, 1, -60), BackgroundColor3 = _0x4058.Card, ZIndex = 3}, _0x7E45)
-_0xD461(_0x48EB, 10); _0x5126(_0x48EB, _0x4058.Accent, 1, 0.75)
-local _0xB8F5 = _0x3465("ImageLabel", {Size = UDim2.new(0, 36, 0, 36), Position = UDim2.new(0, 8, 0.5, -18), BackgroundColor3 = _0x4058.Card2, Image ="", ZIndex = 4}, _0x48EB)
-_0xD461(_0xB8F5, 18); _0x5126(_0xB8F5, _0x4058.AccentLight, 1.5, 0.2)
-_0x3465("TextLabel", {
-Size = UDim2.new(1, -56, 0, 18), Position = UDim2.new(0, 52, 0, 9), BackgroundTransparency = 1, Text = _0x283A.DisplayName,
-Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x4058.Text, TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 4
-}, _0x48EB)
-_0x3465("TextLabel", {
-Size = UDim2.new(1, -56, 0, 14), Position = UDim2.new(0, 52, 0, 27), BackgroundTransparency = 1, Text ="@".. _0x283A.Name,
-Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = _0x4058.TextDim, TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 4
-}, _0x48EB)
+end))local _0x5A6B = _0xA493("Frame", {Size = UDim2.new(0, 178, 1, -72), Position = UDim2.new(0, 12, 0, 66), BackgroundColor3 = _0x9140.Panel, BackgroundTransparency = 0.2, ZIndex = 2}, _0xC954)
+_0xED35(_0x5A6B, 12); _0x0806(_0x5A6B, _0x9140.Accent, 1, 0.8)
+local _0x36F7 = _0xA493("TextBox", {
+Size = UDim2.new(1, -20, 0, 32), Position = UDim2.new(0, 10, 0, 10), BackgroundColor3 = _0x9140.Card, Text ="", PlaceholderText ="🔍  Search tabs...",
+PlaceholderColor3 = _0x9140.TextDim, TextColor3 = _0x9140.Text, Font = Enum.Font.GothamMedium, TextSize = 13, ClearTextOnFocus = false, ZIndex = 3
+}, _0x5A6B)
+_0xED35(_0x36F7, 8); _0x0806(_0x36F7, _0x9140.Accent, 1, 0.75)
+local _0x551D = _0xA493("Frame", {Size = UDim2.new(1, -16, 1, -118), Position = UDim2.new(0, 8, 0, 50), BackgroundTransparency = 1, ZIndex = 3}, _0x5A6B)
+_0xA493("UIListLayout", {Padding = UDim.new(0, 5), SortOrder = Enum.SortOrder.LayoutOrder}, _0x551D)local _0x2193 = _0xA493("Frame", {Size = UDim2.new(1, -16, 0, 52), Position = UDim2.new(0, 8, 1, -60), BackgroundColor3 = _0x9140.Card, ZIndex = 3}, _0x5A6B)
+_0xED35(_0x2193, 10); _0x0806(_0x2193, _0x9140.Accent, 1, 0.75)
+local _0xE929 = _0xA493("ImageLabel", {Size = UDim2.new(0, 36, 0, 36), Position = UDim2.new(0, 8, 0.5, -18), BackgroundColor3 = _0x9140.Card2, Image ="", ZIndex = 4}, _0x2193)
+_0xED35(_0xE929, 18); _0x0806(_0xE929, _0x9140.AccentLight, 1.5, 0.2)
+_0xA493("TextLabel", {
+Size = UDim2.new(1, -56, 0, 18), Position = UDim2.new(0, 52, 0, 9), BackgroundTransparency = 1, Text = _0xA627.DisplayName,
+Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x9140.Text, TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 4
+}, _0x2193)
+_0xA493("TextLabel", {
+Size = UDim2.new(1, -56, 0, 14), Position = UDim2.new(0, 52, 0, 27), BackgroundTransparency = 1, Text ="@".. _0xA627.Name,
+Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = _0x9140.TextDim, TextXAlignment = Enum.TextXAlignment.Left, TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 4
+}, _0x2193)
 task.spawn(function()
-local _0xC0E8, _0x950D = pcall(function()
-return _0x2B63:GetUserThumbnailAsync(_0x283A.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+local _0x7F9D, _0x6F62 = pcall(function()
+return _0xB81D:GetUserThumbnailAsync(_0xA627.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
 end)
-if _0xC0E8 and _0x950D then _0xB8F5.Image = _0x950D end
+if _0x7F9D and _0x6F62 then _0xE929.Image = _0x6F62 end
 end)
-local _0xD9FF = _0x3465("Frame", {Size = UDim2.new(1, -212, 1, -72), Position = UDim2.new(0, 202, 0, 66), BackgroundTransparency = 1, ZIndex = 2}, _0x9E87)local _0xF7CF, _0x1CF0, _0x7A84 = {}, {}, {}
-local _0xF863local _0xD99F = false
-local function _0xD9E1(_0x2B2F, title, glyph)
-local _0xA5E1 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = _0x4058.Card, LayoutOrder = _0x03C2(_0x2B2F), ZIndex = 3}, _0x2B2F)
-_0xD461(_0xA5E1, 12); _0x5126(_0xA5E1, _0x4058.Accent, 1, 0.72)
-_0xD1F5(_0xA5E1, Color3.new(1, 1, 1), Color3.fromRGB(185, 185, 215), 90)_0x3465("UIPadding", {PaddingTop = UDim.new(0, 10), PaddingBottom = UDim.new(0, 12), PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12)}, _0xA5E1)
-_0x3465("UIListLayout", {Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder}, _0xA5E1)
-_0x3465("TextLabel", {
-Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1, LayoutOrder = _0x03C2(_0xA5E1), Text = (glyph or"◆") .."  ".. title:upper(),
-Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = _0x4058.AccentLight, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
-}, _0xA5E1)
-return _0xA5E1
+local _0xF57D = _0xA493("Frame", {Size = UDim2.new(1, -212, 1, -72), Position = UDim2.new(0, 202, 0, 66), BackgroundTransparency = 1, ZIndex = 2}, _0xC954)local _0x2079, _0xCC88, _0xE757 = {}, {}, {}
+local _0x50C9local _0x52F9 = false
+local function _0x6DF1(_0xDB55, title, glyph)
+local _0x5894 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = _0x9140.Card, LayoutOrder = _0x984D(_0xDB55), ZIndex = 3}, _0xDB55)
+_0xED35(_0x5894, 12); _0x0806(_0x5894, _0x9140.Accent, 1, 0.72)
+_0x1B6B(_0x5894, Color3.new(1, 1, 1), Color3.fromRGB(185, 185, 215), 90)_0xA493("UIPadding", {PaddingTop = UDim.new(0, 10), PaddingBottom = UDim.new(0, 12), PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12)}, _0x5894)
+_0xA493("UIListLayout", {Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder}, _0x5894)
+_0xA493("TextLabel", {
+Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1, LayoutOrder = _0x984D(_0x5894), Text = (glyph or"◆") .."  ".. title:upper(),
+Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = _0x9140.AccentLight, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
+}, _0x5894)
+return _0x5894
 end
-local function _0x1C34(_0xA5E1, _0x9B9C)
-local _0x2F75 = _0x3465("TextButton", {
-Size = UDim2.new(1, 0, 0, _0x9B9C or 36), BackgroundColor3 = _0x4058.Card2, BackgroundTransparency = 0.45, Text ="", AutoButtonColor = false,
-LayoutOrder = _0x03C2(_0xA5E1), ZIndex = 4
-}, _0xA5E1)
-_0xD461(_0x2F75, 8)
-_0x2F75.MouseEnter:Connect(function() _0x3F57(_0x2F75, 0.15, {BackgroundTransparency = 0.15}) end)
-_0x2F75.MouseLeave:Connect(function() _0x3F57(_0x2F75, 0.15, {BackgroundTransparency = 0.45}) end)
-return _0x2F75
+local function _0xD3BA(_0x5894, _0x4E53)
+local _0xA7BB = _0xA493("TextButton", {
+Size = UDim2.new(1, 0, 0, _0x4E53 or 36), BackgroundColor3 = _0x9140.Card2, BackgroundTransparency = 0.45, Text ="", AutoButtonColor = false,
+LayoutOrder = _0x984D(_0x5894), ZIndex = 4
+}, _0x5894)
+_0xED35(_0xA7BB, 8)
+_0xA7BB.MouseEnter:Connect(function() _0x6187(_0xA7BB, 0.15, {BackgroundTransparency = 0.15}) end)
+_0xA7BB.MouseLeave:Connect(function() _0x6187(_0xA7BB, 0.15, {BackgroundTransparency = 0.45}) end)
+return _0xA7BB
 end
-local function _0x241D(_0x2F75, text, _0x50F9)
-return _0x3465("TextLabel", {
-Size = UDim2.new(_0x50F9 or 0.62, 0, 1, 0), Position = UDim2.new(0, 12, 0, 0), BackgroundTransparency = 1, Text = text,
-Font = Enum.Font.GothamMedium, TextSize = 14, TextColor3 = _0x4058.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
-}, _0x2F75)
+local function _0x0BB6(_0xA7BB, text, _0x4130)
+return _0xA493("TextLabel", {
+Size = UDim2.new(_0x4130 or 0.62, 0, 1, 0), Position = UDim2.new(0, 12, 0, 0), BackgroundTransparency = 1, Text = text,
+Font = Enum.Font.GothamMedium, TextSize = 14, TextColor3 = _0x9140.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
+}, _0xA7BB)
 end
-local function _0x9CB2(_0xA5E1, text, _0x650B, onChange)
-local _0x2F75 = _0x1C34(_0xA5E1, 38)
-_0x241D(_0x2F75, text)
-local _0xAA86 = _0x3465("Frame", {Size = UDim2.new(0, 42, 0, 22), Position = UDim2.new(1, -54, 0.5, -11), BackgroundColor3 = _0x4058.Panel, ZIndex = 5}, _0x2F75)
-_0xD461(_0xAA86, 11)
-local _0xE46B = _0x5126(_0xAA86, _0x4058.TextDim, 1, 0.5)
-local _0xEAE2 = _0x3465("Frame", {Size = UDim2.new(0, 16, 0, 16), BackgroundColor3 = _0x4058.Text, ZIndex = 6}, _0xAA86)
-_0xD461(_0xEAE2, 8)
-local function _0x5879(_0x5EED, animate)
-local _0x8111 = {BackgroundColor3 = _0x5EED and _0x4058.Accent or _0x4058.Panel}
-local _0xCF3A = _0x5EED and UDim2.new(1, -19, 0.5, -8) or UDim2.new(0, 3, 0.5, -8)
+local function _0x33AC(_0x5894, text, _0xF106, onChange)
+local _0xA7BB = _0xD3BA(_0x5894, 38)
+_0x0BB6(_0xA7BB, text)
+local _0x35FF = _0xA493("Frame", {Size = UDim2.new(0, 42, 0, 22), Position = UDim2.new(1, -54, 0.5, -11), BackgroundColor3 = _0x9140.Panel, ZIndex = 5}, _0xA7BB)
+_0xED35(_0x35FF, 11)
+local _0x9FF9 = _0x0806(_0x35FF, _0x9140.TextDim, 1, 0.5)
+local _0x28C7 = _0xA493("Frame", {Size = UDim2.new(0, 16, 0, 16), BackgroundColor3 = _0x9140.Text, ZIndex = 6}, _0x35FF)
+_0xED35(_0x28C7, 8)
+local function _0xAE53(_0xDFB9, animate)
+local _0xD288 = {BackgroundColor3 = _0xDFB9 and _0x9140.Accent or _0x9140.Panel}
+local _0x833D = _0xDFB9 and UDim2.new(1, -19, 0.5, -8) or UDim2.new(0, 3, 0.5, -8)
 if animate then
-_0x3F57(_0xAA86, 0.2, _0x8111); _0x3F57(_0xEAE2, 0.2, {Position = _0xCF3A}); _0x3F57(_0xE46B, 0.2, {Color = _0x5EED and _0x4058.AccentLight or _0x4058.TextDim})
+_0x6187(_0x35FF, 0.2, _0xD288); _0x6187(_0x28C7, 0.2, {Position = _0x833D}); _0x6187(_0x9FF9, 0.2, {Color = _0xDFB9 and _0x9140.AccentLight or _0x9140.TextDim})
 else
-_0xAA86.BackgroundColor3 = _0x8111.BackgroundColor3; _0xEAE2.Position = _0xCF3A; _0xE46B.Color = _0x5EED and _0x4058.AccentLight or _0x4058.TextDim
+_0x35FF.BackgroundColor3 = _0xD288.BackgroundColor3; _0x28C7.Position = _0x833D; _0x9FF9.Color = _0xDFB9 and _0x9140.AccentLight or _0x9140.TextDim
 end
 end
-_0x5879(_0x0446.Toggles[_0x650B], false)
-local _0x9B9C = {}
-function _0x9B9C.Set(_0xBBCC)
-_0x0446.Toggles[_0x650B] = _0xBBCC and true or false
-_0x5879(_0x0446.Toggles[_0x650B], true)
-if onChange then onChange(_0x0446.Toggles[_0x650B]) end
+_0xAE53(_0x83EE.Toggles[_0xF106], false)
+local _0x4E53 = {}
+function _0x4E53.Set(_0x166D)
+_0x83EE.Toggles[_0xF106] = _0x166D and true or false
+_0xAE53(_0x83EE.Toggles[_0xF106], true)
+if onChange then onChange(_0x83EE.Toggles[_0xF106]) end
 end
-_0xF7CF[_0x650B] = _0x9B9C
-_0x2F75.MouseButton1Click:Connect(function() _0x9B9C.Set(not _0x0446.Toggles[_0x650B]) end)
-return _0x9B9C
+_0x2079[_0xF106] = _0x4E53
+_0xA7BB.MouseButton1Click:Connect(function() _0x4E53.Set(not _0x83EE.Toggles[_0xF106]) end)
+return _0x4E53
 end
-local function _0x8359(_0xA5E1, text, _0x650B, min, max, suffix, _0x681B)
-local _0x2F75 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 48), BackgroundColor3 = _0x4058.Card2, BackgroundTransparency = 0.45, LayoutOrder = _0x03C2(_0xA5E1), ZIndex = 4}, _0xA5E1)
-_0xD461(_0x2F75, 8)
-local _0x7FC3 = _0x3465("TextLabel", {
+local function _0x5D52(_0x5894, text, _0xF106, min, max, suffix, _0xCB71)
+local _0xA7BB = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 48), BackgroundColor3 = _0x9140.Card2, BackgroundTransparency = 0.45, LayoutOrder = _0x984D(_0x5894), ZIndex = 4}, _0x5894)
+_0xED35(_0xA7BB, 8)
+local _0x3E3D = _0xA493("TextLabel", {
 Size = UDim2.new(0.6, 0, 0, 22), Position = UDim2.new(0, 12, 0, 4), BackgroundTransparency = 1, Text = text,
-Font = Enum.Font.GothamMedium, TextSize = 14, TextColor3 = _0x4058.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
-}, _0x2F75)
-local _0xFA90 = _0x3465("TextLabel", {
+Font = Enum.Font.GothamMedium, TextSize = 14, TextColor3 = _0x9140.Text, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
+}, _0xA7BB)
+local _0x1DC3 = _0xA493("TextLabel", {
 Size = UDim2.new(0.4, -12, 0, 22), Position = UDim2.new(0.6, 0, 0, 4), BackgroundTransparency = 1, Text ="",
-Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x4058.AccentLight, TextXAlignment = Enum.TextXAlignment.Right, ZIndex = 5
-}, _0x2F75)
-local _0xCCC7 = _0x3465("TextButton", {Size = UDim2.new(1, -24, 0, 18), Position = UDim2.new(0, 12, 0, 27), BackgroundTransparency = 1, Text ="", ZIndex = 5}, _0x2F75)
-local _0x8295 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 6), Position = UDim2.new(0, 0, 0.5, -3), BackgroundColor3 = _0x4058.Panel, ZIndex = 5}, _0xCCC7)
-_0xD461(_0x8295, 3)
-local _0x3734 = _0x3465("Frame", {Size = UDim2.new(0, 0, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1), ZIndex = 6}, _0x8295)
-_0xD461(_0x3734, 3); _0xD1F5(_0x3734, _0x4058.Accent, _0x4058.AccentLight, 0)
-local _0xEAE2 = _0x3465("Frame", {Size = UDim2.new(0, 14, 0, 14), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0, 0, 0.5, 0), BackgroundColor3 = _0x4058.Text, ZIndex = 7}, _0x8295)
-_0xD461(_0xEAE2, 7); _0x5126(_0xEAE2, _0x4058.AccentLight, 1.5, 0.1)
-local function _0x5879()
-local _0xBBCC = _0x0446.Values[_0x650B]
-local _0x1F96 = (_0xBBCC - min) / (max - min)
-_0x3734.Size = UDim2.new(_0x1F96, 0, 1, 0)
-_0xEAE2.Position = UDim2.new(_0x1F96, 0, 0.5, 0)
-_0xFA90.Text = tostring(_0xBBCC) .. (suffix or"")
+Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x9140.AccentLight, TextXAlignment = Enum.TextXAlignment.Right, ZIndex = 5
+}, _0xA7BB)
+local _0xA91F = _0xA493("TextButton", {Size = UDim2.new(1, -24, 0, 18), Position = UDim2.new(0, 12, 0, 27), BackgroundTransparency = 1, Text ="", ZIndex = 5}, _0xA7BB)
+local _0x6503 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 6), Position = UDim2.new(0, 0, 0.5, -3), BackgroundColor3 = _0x9140.Panel, ZIndex = 5}, _0xA91F)
+_0xED35(_0x6503, 3)
+local _0x1744 = _0xA493("Frame", {Size = UDim2.new(0, 0, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1), ZIndex = 6}, _0x6503)
+_0xED35(_0x1744, 3); _0x1B6B(_0x1744, _0x9140.Accent, _0x9140.AccentLight, 0)
+local _0x28C7 = _0xA493("Frame", {Size = UDim2.new(0, 14, 0, 14), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0, 0, 0.5, 0), BackgroundColor3 = _0x9140.Text, ZIndex = 7}, _0x6503)
+_0xED35(_0x28C7, 7); _0x0806(_0x28C7, _0x9140.AccentLight, 1.5, 0.1)
+local function _0xAE53()
+local _0x166D = _0x83EE.Values[_0xF106]
+local _0x43F4 = (_0x166D - min) / (max - min)
+_0x1744.Size = UDim2.new(_0x43F4, 0, 1, 0)
+_0x28C7.Position = UDim2.new(_0x43F4, 0, 0.5, 0)
+_0x1DC3.Text = tostring(_0x166D) .. (suffix or"")
 end
-local _0x9B9C = {}
-function _0x9B9C.Set(_0xBBCC)
-local _0x6E87 = _0x681B or 1
-_0x0446.Values[_0x650B] = math.clamp(math.floor((tonumber(_0xBBCC) or min) / _0x6E87 + 0.5) * _0x6E87, min, max)
-_0x5879()
+local _0x4E53 = {}
+function _0x4E53.Set(_0x166D)
+local _0x1513 = _0xCB71 or 1
+_0x83EE.Values[_0xF106] = math.clamp(math.floor((tonumber(_0x166D) or min) / _0x1513 + 0.5) * _0x1513, min, max)
+_0xAE53()
 end
-_0x1CF0[_0x650B] = _0x9B9C
-_0x5879()
-local _0xB909 = false
-local function _0x2AB3(x) _0x9B9C.Set(min + (max - min) * math.clamp((x - _0x8295.AbsolutePosition.X) / math.max(_0x8295.AbsoluteSize.X, 1), 0, 1)) end
-_0xCCC7.InputBegan:Connect(function(i)
-if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0xB909 = true; _0x2AB3(i.Position.X) end
+_0xCC88[_0xF106] = _0x4E53
+_0xAE53()
+local _0x1CFB = false
+local function _0x6661(x) _0x4E53.Set(min + (max - min) * math.clamp((x - _0x6503.AbsolutePosition.X) / math.max(_0x6503.AbsoluteSize.X, 1), 0, 1)) end
+_0xA91F.InputBegan:Connect(function(i)
+if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0x1CFB = true; _0x6661(i.Position.X) end
 end)
-_0x6EBB(_0xDC4F.InputEnded:Connect(function(i)
-if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0xB909 = false end
+_0x99D0(_0xDC44.InputEnded:Connect(function(i)
+if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then _0x1CFB = false end
 end))
-_0x6EBB(_0xDC4F.InputChanged:Connect(function(i)
-if _0xB909 and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then _0x2AB3(i.Position.X) end
+_0x99D0(_0xDC44.InputChanged:Connect(function(i)
+if _0x1CFB and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then _0x6661(i.Position.X) end
 end))
-return _0x9B9C
+return _0x4E53
 end
-local function _0x5EA2(parent, text, style, order)
-local _0x7421 = {primary = _0x4058.Accent, info = _0x4058.AccentLight, danger = _0x4058.Danger, ghost = _0x4058.Card2}
-local _0xCA45 = _0x3465("TextButton", {
-Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x7421[style or"primary"], Text = text, Font = Enum.Font.GothamBold, TextSize = 14,
-TextColor3 = (style =="info") and _0x4058.Bg or _0x4058.Text, AutoButtonColor = false, LayoutOrder = order or _0x03C2(parent), ZIndex = 4
+local function _0xA63B(parent, text, style, order)
+local _0x4EB7 = {primary = _0x9140.Accent, info = _0x9140.AccentLight, danger = _0x9140.Danger, ghost = _0x9140.Card2}
+local _0x2E49 = _0xA493("TextButton", {
+Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x4EB7[style or"primary"], Text = text, Font = Enum.Font.GothamBold, TextSize = 14,
+TextColor3 = (style =="info") and _0x9140.Bg or _0x9140.Text, AutoButtonColor = false, LayoutOrder = order or _0x984D(parent), ZIndex = 4
 }, parent)
-_0xD461(_0xCA45, 8); _0xD1F5(_0xCA45, Color3.new(1, 1, 1), Color3.fromRGB(170, 170, 190), 90)
-_0xCA45.MouseEnter:Connect(function() _0x3F57(_0xCA45, 0.15, {BackgroundTransparency = 0.2}) end)
-_0xCA45.MouseLeave:Connect(function() _0x3F57(_0xCA45, 0.15, {BackgroundTransparency = 0}) end)
-return _0xCA45
+_0xED35(_0x2E49, 8); _0x1B6B(_0x2E49, Color3.new(1, 1, 1), Color3.fromRGB(170, 170, 190), 90)
+_0x2E49.MouseEnter:Connect(function() _0x6187(_0x2E49, 0.15, {BackgroundTransparency = 0.2}) end)
+_0x2E49.MouseLeave:Connect(function() _0x6187(_0x2E49, 0.15, {BackgroundTransparency = 0}) end)
+return _0x2E49
 end
-local function _0x3EDE(_0xA5E1, text, initial)
-local _0x2F75 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 28), BackgroundTransparency = 1, LayoutOrder = _0x03C2(_0xA5E1), ZIndex = 4}, _0xA5E1)
-_0x3465("TextLabel", {
+local function _0xB40E(_0x5894, text, initial)
+local _0xA7BB = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 28), BackgroundTransparency = 1, LayoutOrder = _0x984D(_0x5894), ZIndex = 4}, _0x5894)
+_0xA493("TextLabel", {
 Size = UDim2.new(0.35, 0, 1, 0), BackgroundTransparency = 1, Text = text, Font = Enum.Font.GothamMedium, TextSize = 13,
-TextColor3 = _0x4058.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
-}, _0x2F75)
-local _0xBBCC = _0x3465("TextLabel", {
+TextColor3 = _0x9140.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
+}, _0xA7BB)
+local _0x166D = _0xA493("TextLabel", {
 Size = UDim2.new(0.65, 0, 1, 0), Position = UDim2.new(0.35, 0, 0, 0), BackgroundTransparency = 1, Text = initial or"-",
-Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x4058.Text, TextXAlignment = Enum.TextXAlignment.Right,
+Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x9140.Text, TextXAlignment = Enum.TextXAlignment.Right,
 TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 5
-}, _0x2F75)
-return function(_0x95D3, color) _0xBBCC.Text = _0x95D3; _0xBBCC.TextColor3 = color or _0x4058.Text end
+}, _0xA7BB)
+return function(_0xE38E, color) _0x166D.Text = _0xE38E; _0x166D.TextColor3 = color or _0x9140.Text end
 end
-local function _0x1279(_0xA5E1, text, itemsFunc, onPick, current)
-local _0xA4BA = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = _0x03C2(_0xA5E1), ZIndex = 4}, _0xA5E1)
-_0x3465("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, _0xA4BA)
-local _0x87C0 = _0x3465("TextButton", {Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x4058.Card2, BackgroundTransparency = 0.45, Text ="", AutoButtonColor = false, LayoutOrder = 1, ZIndex = 4}, _0xA4BA)
-_0xD461(_0x87C0, 8)
-_0x87C0.MouseEnter:Connect(function() _0x3F57(_0x87C0, 0.15, {BackgroundTransparency = 0.15}) end)
-_0x87C0.MouseLeave:Connect(function() _0x3F57(_0x87C0, 0.15, {BackgroundTransparency = 0.45}) end)
-_0x241D(_0x87C0, text, 0.4)
-local _0xC76A = _0x3465("TextLabel", {
+local function _0x5D8D(_0x5894, text, itemsFunc, onPick, current)
+local _0xA344 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = _0x984D(_0x5894), ZIndex = 4}, _0x5894)
+_0xA493("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, _0xA344)
+local _0x6F46 = _0xA493("TextButton", {Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x9140.Card2, BackgroundTransparency = 0.45, Text ="", AutoButtonColor = false, LayoutOrder = 1, ZIndex = 4}, _0xA344)
+_0xED35(_0x6F46, 8)
+_0x6F46.MouseEnter:Connect(function() _0x6187(_0x6F46, 0.15, {BackgroundTransparency = 0.15}) end)
+_0x6F46.MouseLeave:Connect(function() _0x6187(_0x6F46, 0.15, {BackgroundTransparency = 0.45}) end)
+_0x0BB6(_0x6F46, text, 0.4)
+local _0xF72C = _0xA493("TextLabel", {
 Size = UDim2.new(0.6, -36, 1, 0), Position = UDim2.new(0.4, 0, 0, 0), BackgroundTransparency = 1, Text = current or"Select...",
-Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x4058.AccentLight, TextXAlignment = Enum.TextXAlignment.Right,
+Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = _0x9140.AccentLight, TextXAlignment = Enum.TextXAlignment.Right,
 TextTruncate = Enum.TextTruncate.AtEnd, ZIndex = 5
-}, _0x87C0)
-local _0x1537 = _0x3465("TextLabel", {Size = UDim2.new(0, 20, 1, 0), Position = UDim2.new(1, -26, 0, 0), BackgroundTransparency = 1, Text ="▾", TextSize = 14, TextColor3 = _0x4058.TextDim, Font = Enum.Font.GothamBold, ZIndex = 5}, _0x87C0)
-local _0x593F = _0x3465("ScrollingFrame", {
-Size = UDim2.new(1, 0, 0, 0), Visible = false, BackgroundColor3 = _0x4058.Panel, BorderSizePixel = 0, ScrollBarThickness = 3,
-ScrollBarImageColor3 = _0x4058.Accent, CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, LayoutOrder = 2, ZIndex = 6
-}, _0xA4BA)
-_0xD461(_0x593F, 8); _0x5126(_0x593F, _0x4058.Accent, 1, 0.5)
-_0x3465("UIPadding", {PaddingTop = UDim.new(0, 4), PaddingBottom = UDim.new(0, 4), PaddingLeft = UDim.new(0, 4), PaddingRight = UDim.new(0, 8)}, _0x593F)
-_0x3465("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, _0x593F)
-local _0xD8C8 = _0x3465("TextBox", {
-Size = UDim2.new(1, 0, 0, 26), BackgroundColor3 = _0x4058.Card, Text ="", PlaceholderText ="Search...", PlaceholderColor3 = _0x4058.TextDim,
-TextColor3 = _0x4058.Text, Font = Enum.Font.GothamMedium, TextSize = 13, LayoutOrder = 0, ZIndex = 7
-}, _0x593F)
-_0xD461(_0xD8C8, 6)
-local _0x09E0 = 0
-local function _0xDE96()
-for _0x70AE, _0xBBCC in pairs(_0x593F:GetChildren()) do if _0xBBCC:IsA("TextButton") then _0xBBCC:Destroy() end end
-local _0xC0E8, _0x5494 = pcall(itemsFunc)
-if not _0xC0E8 or type(_0x5494) ~="table"then _0x5494 = {} end
-_0x09E0 = #_0x5494
-for i, item in ipairs(_0x5494) do
-local _0x7C96 = _0x3465("TextButton", {
-Size = UDim2.new(1, 0, 0, 28), BackgroundColor3 = _0x4058.Card, Text ="  ".. item, TextColor3 = _0x4058.Text,
+}, _0x6F46)
+local _0x2642 = _0xA493("TextLabel", {Size = UDim2.new(0, 20, 1, 0), Position = UDim2.new(1, -26, 0, 0), BackgroundTransparency = 1, Text ="▾", TextSize = 14, TextColor3 = _0x9140.TextDim, Font = Enum.Font.GothamBold, ZIndex = 5}, _0x6F46)
+local _0x26CC = _0xA493("ScrollingFrame", {
+Size = UDim2.new(1, 0, 0, 0), Visible = false, BackgroundColor3 = _0x9140.Panel, BorderSizePixel = 0, ScrollBarThickness = 3,
+ScrollBarImageColor3 = _0x9140.Accent, CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, LayoutOrder = 2, ZIndex = 6
+}, _0xA344)
+_0xED35(_0x26CC, 8); _0x0806(_0x26CC, _0x9140.Accent, 1, 0.5)
+_0xA493("UIPadding", {PaddingTop = UDim.new(0, 4), PaddingBottom = UDim.new(0, 4), PaddingLeft = UDim.new(0, 4), PaddingRight = UDim.new(0, 8)}, _0x26CC)
+_0xA493("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, _0x26CC)
+local _0xFAD3 = _0xA493("TextBox", {
+Size = UDim2.new(1, 0, 0, 26), BackgroundColor3 = _0x9140.Card, Text ="", PlaceholderText ="Search...", PlaceholderColor3 = _0x9140.TextDim,
+TextColor3 = _0x9140.Text, Font = Enum.Font.GothamMedium, TextSize = 13, LayoutOrder = 0, ZIndex = 7
+}, _0x26CC)
+_0xED35(_0xFAD3, 6)
+local _0x4FDC = 0
+local function _0xB750()
+for _0xDF0E, _0x166D in pairs(_0x26CC:GetChildren()) do if _0x166D:IsA("TextButton") then _0x166D:Destroy() end end
+local _0x7F9D, _0x5D82 = pcall(itemsFunc)
+if not _0x7F9D or type(_0x5D82) ~="table"then _0x5D82 = {} end
+_0x4FDC = #_0x5D82
+for i, item in ipairs(_0x5D82) do
+local _0xFBD5 = _0xA493("TextButton", {
+Size = UDim2.new(1, 0, 0, 28), BackgroundColor3 = _0x9140.Card, Text ="  ".. item, TextColor3 = _0x9140.Text,
 TextXAlignment = Enum.TextXAlignment.Left, Font = Enum.Font.GothamMedium, TextSize = 13, AutoButtonColor = false, LayoutOrder = i, ZIndex = 7
-}, _0x593F)
-_0xD461(_0x7C96, 6)
-_0x7C96.MouseEnter:Connect(function() _0x3F57(_0x7C96, 0.1, {BackgroundColor3 = _0x4058.Accent}) end)
-_0x7C96.MouseLeave:Connect(function() _0x3F57(_0x7C96, 0.1, {BackgroundColor3 = _0x4058.Card}) end)
-_0x7C96.MouseButton1Click:Connect(function()
-_0xC76A.Text = item; _0x593F.Visible = false; _0x593F.Size = UDim2.new(1, 0, 0, 0); _0x1537.Text ="▾"onPick(item)
+}, _0x26CC)
+_0xED35(_0xFBD5, 6)
+_0xFBD5.MouseEnter:Connect(function() _0x6187(_0xFBD5, 0.1, {BackgroundColor3 = _0x9140.Accent}) end)
+_0xFBD5.MouseLeave:Connect(function() _0x6187(_0xFBD5, 0.1, {BackgroundColor3 = _0x9140.Card}) end)
+_0xFBD5.MouseButton1Click:Connect(function()
+_0xF72C.Text = item; _0x26CC.Visible = false; _0x26CC.Size = UDim2.new(1, 0, 0, 0); _0x2642.Text ="▾"onPick(item)
 end)
 end
 end
-_0x87C0.MouseButton1Click:Connect(function()
-local _0x2EA2 = not _0x593F.Visible
-if _0x2EA2 then
-_0xDE96()
-_0x593F.Size = UDim2.new(1, 0, 0, math.clamp(_0x09E0 * 31 + 40, 72, 176))
-_0xD8C8.Text =""else
-_0x593F.Size = UDim2.new(1, 0, 0, 0)
+_0x6F46.MouseButton1Click:Connect(function()
+local _0xE120 = not _0x26CC.Visible
+if _0xE120 then
+_0xB750()
+_0x26CC.Size = UDim2.new(1, 0, 0, math.clamp(_0x4FDC * 31 + 40, 72, 176))
+_0xFAD3.Text =""else
+_0x26CC.Size = UDim2.new(1, 0, 0, 0)
 end
-_0x593F.Visible = _0x2EA2
-_0x1537.Text = _0x2EA2 and"▴"or"▾"end)
-_0xD8C8:GetPropertyChangedSignal("Text"):Connect(function()
-local _0x3DEE = _0xD8C8.Text:lower()
-for _0x70AE, _0x7487 in pairs(_0x593F:GetChildren()) do
-if _0x7487:IsA("TextButton") then _0x7487.Visible = (_0x3DEE ==""or _0x7487.Text:lower():find(_0x3DEE, 1, true) ~= nil) end
+_0x26CC.Visible = _0xE120
+_0x2642.Text = _0xE120 and"▴"or"▾"end)
+_0xFAD3:GetPropertyChangedSignal("Text"):Connect(function()
+local _0x3656 = _0xFAD3.Text:lower()
+for _0xDF0E, _0x7542 in pairs(_0x26CC:GetChildren()) do
+if _0x7542:IsA("TextButton") then _0x7542.Visible = (_0x3656 ==""or _0x7542.Text:lower():find(_0x3656, 1, true) ~= nil) end
 end
 end)
-return {SetText = function(_0x95D3) _0xC76A.Text = _0x95D3 end, Refresh = _0xDE96}
+return {SetText = function(_0xE38E) _0xF72C.Text = _0xE38E end, Refresh = _0xB750}
 end
-local function _0xDE73(_0xA5E1, text, _0x5C59)
-local _0x2F75 = _0x1C34(_0xA5E1, 38)
-_0x241D(_0x2F75, text)
-local _0x0255 = _0x3465("TextButton", {
-Size = UDim2.new(0, 100, 0, 26), Position = UDim2.new(1, -112, 0.5, -13), BackgroundColor3 = _0x4058.Panel, Font = Enum.Font.GothamBold,
-TextSize = 12, TextColor3 = _0x4058.AccentLight, AutoButtonColor = false, Text ="", ZIndex = 5
-}, _0x2F75)
-_0xD461(_0x0255, 6); _0x5126(_0x0255, _0x4058.Accent, 1, 0.5)
-local function _0xDE4D()
-local _0xEFB3 = _0x0446.Keybinds[_0x5C59]
-_0x0255.Text = (_0xEFB3 == Enum.KeyCode.Unknown) and"None"or _0xEFB3.Name
+local function _0x0D14(_0x5894, text, _0x576B)
+local _0xA7BB = _0xD3BA(_0x5894, 38)
+_0x0BB6(_0xA7BB, text)
+local _0x26C9 = _0xA493("TextButton", {
+Size = UDim2.new(0, 100, 0, 26), Position = UDim2.new(1, -112, 0.5, -13), BackgroundColor3 = _0x9140.Panel, Font = Enum.Font.GothamBold,
+TextSize = 12, TextColor3 = _0x9140.AccentLight, AutoButtonColor = false, Text ="", ZIndex = 5
+}, _0xA7BB)
+_0xED35(_0x26C9, 6); _0x0806(_0x26C9, _0x9140.Accent, 1, 0.5)
+local function _0x9678()
+local _0x3A9C = _0x83EE.Keybinds[_0x576B]
+_0x26C9.Text = (_0x3A9C == Enum.KeyCode.Unknown) and"None"or _0x3A9C.Name
 end
-_0xDE4D(); _0x7A84[_0x5C59] = _0xDE4D
-_0x0255.MouseButton1Click:Connect(function()
-if _0xD99F then return end
-_0xD99F = true
-_0x0255.Text ="Press key..."local _0x7BEE
-_0x7BEE = _0xDC4F.InputBegan:Connect(function(input)
+_0x9678(); _0xE757[_0x576B] = _0x9678
+_0x26C9.MouseButton1Click:Connect(function()
+if _0x52F9 then return end
+_0x52F9 = true
+_0x26C9.Text ="Press key..."local _0x44A9
+_0x44A9 = _0xDC44.InputBegan:Connect(function(input)
 if input.UserInputType == Enum.UserInputType.Keyboard then
-_0x0446.Keybinds[_0x5C59] = (input.KeyCode == Enum.KeyCode.Escape) and Enum.KeyCode.Unknown or input.KeyCode
-_0xDE4D(); _0x7BEE:Disconnect()
-task.delay(0.25, function() _0xD99F = false end)end
+_0x83EE.Keybinds[_0x576B] = (input.KeyCode == Enum.KeyCode.Escape) and Enum.KeyCode.Unknown or input.KeyCode
+_0x9678(); _0x44A9:Disconnect()
+task.delay(0.25, function() _0x52F9 = false end)end
 end)
 end)
-endlocal _0xB612, _0x675E = {}, {}
-local _0x83D2 = 0
-local function _0x3C44(_0x5C59)
-for _0x1978, _0xAFE2 in pairs(_0xB612) do _0xAFE2.Visible = (_0x1978 == _0x5C59) end
-for _0x1978, _0x95D3 in pairs(_0x675E) do
-local _0x5EED = (_0x1978 == _0x5C59)
-_0x3F57(_0x95D3.btn, 0.2, {BackgroundTransparency = _0x5EED and 0.1 or 1})
-_0x3F57(_0x95D3.bar, 0.2, {BackgroundTransparency = _0x5EED and 0 or 1})
-_0x3F57(_0x95D3.lbl, 0.2, {TextColor3 = _0x5EED and _0x4058.Text or _0x4058.TextDim})
+endlocal _0x7966, _0x302E = {}, {}
+local _0x799F = 0
+local function _0xC637(_0x576B)
+for _0x1F55, _0x0C46 in pairs(_0x7966) do _0x0C46.Visible = (_0x1F55 == _0x576B) end
+for _0x1F55, _0xE38E in pairs(_0x302E) do
+local _0xDFB9 = (_0x1F55 == _0x576B)
+_0x6187(_0xE38E.btn, 0.2, {BackgroundTransparency = _0xDFB9 and 0.1 or 1})
+_0x6187(_0xE38E.bar, 0.2, {BackgroundTransparency = _0xDFB9 and 0 or 1})
+_0x6187(_0xE38E.lbl, 0.2, {TextColor3 = _0xDFB9 and _0x9140.Text or _0x9140.TextDim})
 end
 end
-local function _0x5165(_0x5C59, glyph)
-local _0x8483 = _0x3465("ScrollingFrame", {
-Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 3, ScrollBarImageColor3 = _0x4058.Accent,
+local function _0x7C9F(_0x576B, glyph)
+local _0x0570 = _0xA493("ScrollingFrame", {
+Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 3, ScrollBarImageColor3 = _0x9140.Accent,
 CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, Visible = false, ZIndex = 3
-}, _0xD9FF)
-local _0xA850 = _0x3465("Frame", {Size = UDim2.new(1, -8, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1}, _0x8483)
-_0x3465("UIListLayout", {FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 10), VerticalAlignment = Enum.VerticalAlignment.Top, SortOrder = Enum.SortOrder.LayoutOrder}, _0xA850)
-local function _0x2B2F(_0x7487)
-local _0xCDA5 = _0x3465("Frame", {Size = UDim2.new(0.5, -5, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = _0x7487}, _0xA850)
-_0x3465("UIListLayout", {Padding = UDim.new(0, 10), SortOrder = Enum.SortOrder.LayoutOrder}, _0xCDA5)
-return _0xCDA5
+}, _0xF57D)
+local _0x4719 = _0xA493("Frame", {Size = UDim2.new(1, -8, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1}, _0x0570)
+_0xA493("UIListLayout", {FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 10), VerticalAlignment = Enum.VerticalAlignment.Top, SortOrder = Enum.SortOrder.LayoutOrder}, _0x4719)
+local function _0xDB55(_0x7542)
+local _0x24C0 = _0xA493("Frame", {Size = UDim2.new(0.5, -5, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = _0x7542}, _0x4719)
+_0xA493("UIListLayout", {Padding = UDim.new(0, 10), SortOrder = Enum.SortOrder.LayoutOrder}, _0x24C0)
+return _0x24C0
 end
-local _0xFD88, _0xAE19 = _0x2B2F(1), _0x2B2F(2)
-_0xB612[_0x5C59] = _0x8483
-_0x83D2 += 1
-local _0x0255 = _0x3465("TextButton", {
-Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = _0x4058.Accent, BackgroundTransparency = 1, Text ="", AutoButtonColor = false, LayoutOrder = _0x83D2, ZIndex = 4
-}, _0x3417)
-_0xD461(_0x0255, 10); _0xD1F5(_0x0255, _0x4058.Accent, _0x4058.AccentLight, 0)
-local _0x8295 = _0x3465("Frame", {Size = UDim2.new(0, 3, 0.6, 0), Position = UDim2.new(0, 0, 0.2, 0), BackgroundColor3 = _0x4058.AccentLight, BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 5}, _0x0255)
-_0xD461(_0x8295, 2)
-_0x3465("TextLabel", {Size = UDim2.new(0, 30, 1, 0), Position = UDim2.new(0, 10, 0, 0), BackgroundTransparency = 1, Text = glyph, TextSize = 16, Font = Enum.Font.GothamBold, TextColor3 = _0x4058.Text, ZIndex = 5}, _0x0255)
-local _0x7FC3 = _0x3465("TextLabel", {
-Size = UDim2.new(1, -50, 1, 0), Position = UDim2.new(0, 44, 0, 0), BackgroundTransparency = 1, Text = _0x5C59, Font = Enum.Font.GothamBold,
-TextSize = 14, TextColor3 = _0x4058.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
-}, _0x0255)
-_0x0255.MouseButton1Click:Connect(function() _0x3C44(_0x5C59) end)
-_0x675E[_0x5C59] = {_0x0255 = _0x0255, _0x8295 = _0x8295, _0x7FC3 = _0x7FC3}
-return {_0xFD88 = _0xFD88, _0xAE19 = _0xAE19}
+local _0x1C05, _0xFD39 = _0xDB55(1), _0xDB55(2)
+_0x7966[_0x576B] = _0x0570
+_0x799F += 1
+local _0x26C9 = _0xA493("TextButton", {
+Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = _0x9140.Accent, BackgroundTransparency = 1, Text ="", AutoButtonColor = false, LayoutOrder = _0x799F, ZIndex = 4
+}, _0x551D)
+_0xED35(_0x26C9, 10); _0x1B6B(_0x26C9, _0x9140.Accent, _0x9140.AccentLight, 0)
+local _0x6503 = _0xA493("Frame", {Size = UDim2.new(0, 3, 0.6, 0), Position = UDim2.new(0, 0, 0.2, 0), BackgroundColor3 = _0x9140.AccentLight, BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 5}, _0x26C9)
+_0xED35(_0x6503, 2)
+_0xA493("TextLabel", {Size = UDim2.new(0, 30, 1, 0), Position = UDim2.new(0, 10, 0, 0), BackgroundTransparency = 1, Text = glyph, TextSize = 16, Font = Enum.Font.GothamBold, TextColor3 = _0x9140.Text, ZIndex = 5}, _0x26C9)
+local _0x3E3D = _0xA493("TextLabel", {
+Size = UDim2.new(1, -50, 1, 0), Position = UDim2.new(0, 44, 0, 0), BackgroundTransparency = 1, Text = _0x576B, Font = Enum.Font.GothamBold,
+TextSize = 14, TextColor3 = _0x9140.TextDim, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5
+}, _0x26C9)
+_0x26C9.MouseButton1Click:Connect(function() _0xC637(_0x576B) end)
+_0x302E[_0x576B] = {_0x26C9 = _0x26C9, _0x6503 = _0x6503, _0x3E3D = _0x3E3D}
+return {_0x1C05 = _0x1C05, _0xFD39 = _0xFD39}
 end
-_0xDDE4:GetPropertyChangedSignal("Text"):Connect(function()
-local _0x3DEE = _0xDDE4.Text:lower()
-for _0x1978, _0x95D3 in pairs(_0x675E) do _0x95D3.btn.Visible = (_0x3DEE ==""or _0x1978:lower():find(_0x3DEE, 1, true) ~= nil) end
+_0x36F7:GetPropertyChangedSignal("Text"):Connect(function()
+local _0x3656 = _0x36F7.Text:lower()
+for _0x1F55, _0xE38E in pairs(_0x302E) do _0xE38E.btn.Visible = (_0x3656 ==""or _0x1F55:lower():find(_0x3656, 1, true) ~= nil) end
 end)
-local _0xD5C1 = _0x5165("Auto Farm","🐟")
-local _0xA25D = _0x5165("Combat","⚔")
-local _0x4A64 = _0x5165("Events","⭐")
-local _0x6A67 = _0x5165("Misc","🧪")
-local _0xED83 = _0x5165("Settings","⚙")
-_0x3C44("Auto Farm")local function _0xD37C(_0x95D3, out, depth)
+local _0x0954 = _0x7C9F("Auto Farm","🐟")
+local _0xABC8 = _0x7C9F("Combat","⚔")
+local _0xEB2A = _0x7C9F("Events","⭐")
+local _0x15E4 = _0x7C9F("Misc","🧪")
+local _0xFEFE = _0x7C9F("Settings","⚙")
+_0xC637("Auto Farm")local function _0x04ED(_0xE38E, out, depth)
 if depth > 4 then return end
-for _0xEFB3, _0xBBCC in pairs(_0x95D3) do
-if type(_0xEFB3) =="string"and _0xEFB3:match("^Fish_") and _0xBBCC then out[_0xEFB3] = true end
-if type(_0xBBCC) =="string"and _0xBBCC:match("^Fish_") then out[_0xBBCC] = true end
-if type(_0xBBCC) =="table"then _0xD37C(_0xBBCC, out, depth + 1) end
+for _0x3A9C, _0x166D in pairs(_0xE38E) do
+if type(_0x3A9C) =="string"and _0x3A9C:match("^Fish_") and _0x166D then out[_0x3A9C] = true end
+if type(_0x166D) =="string"and _0x166D:match("^Fish_") then out[_0x166D] = true end
+if type(_0x166D) =="table"then _0x04ED(_0x166D, out, depth + 1) end
 end
 end
-local _0x2391 = _0xD9E1(_0xD5C1.L,"Fish","🐟")
-local _0xF7FD = _0x1279(_0x2391,"Select Fish", function()
-local _0x0549, _0x8438 = {}, {}
-local _0xB399, _0x8A04 = pcall(function() return _0x2C40:InvokeServer() end)
-if _0xB399 and type(_0x8A04) =="table"then _0xD37C(type(_0x8A04.unlockedFish) =="table"and _0x8A04.unlockedFish or _0x8A04, _0x0549, 0) end
-for _0xEFB3 in pairs(_0x0549) do table.insert(_0x8438, _0xEFB3) end
-table.sort(_0x8438)
-return _0x8438
-end, function(fish) _0x0446.SelectedFish = fish end, _0x0446.SelectedFish)
-local _0xA976 = _0x5EA2(_0x2391,"Spawn Selected Fish","primary")
-_0xA976.MouseButton1Click:Connect(function()
-pcall(function() _0x93D4:InvokeServer(_0x0446.SelectedFish); task.wait(0.5); _0x0E92:FireServer() end)
+local _0x1241 = _0x6DF1(_0x0954.L,"Fish","🐟")
+local _0x3E3B = _0x5D8D(_0x1241,"Select Fish", function()
+local _0x9DAF, _0x3DCD = {}, {}
+local _0x4E29, _0x66C0 = pcall(function() return _0x22C5:InvokeServer() end)
+if _0x4E29 and type(_0x66C0) =="table"then _0x04ED(type(_0x66C0.unlockedFish) =="table"and _0x66C0.unlockedFish or _0x66C0, _0x9DAF, 0) end
+for _0x3A9C in pairs(_0x9DAF) do table.insert(_0x3DCD, _0x3A9C) end
+table.sort(_0x3DCD)
+return _0x3DCD
+end, function(fish) _0x83EE.SelectedFish = fish end, _0x83EE.SelectedFish)
+local _0x0A2C = _0xA63B(_0x1241,"Spawn Selected Fish","primary")
+_0x0A2C.MouseButton1Click:Connect(function()
+pcall(function() _0xBF61:InvokeServer(_0x83EE.SelectedFish); task.wait(0.5); _0xC94D:FireServer() end)
 end)
-local _0xAAED = _0xD9E1(_0xD5C1.L,"Farming","⚡")
-_0x9CB2(_0xAAED,"Autofarm (Food)","Eat")
-_0x9CB2(_0xAAED,"Autofarm NPCs","KillNPC")
-_0x1279(_0xAAED,"NPC Target", function() return {"Fishes","Crabs","Slugs"} end, function(_0xBBCC) _0x0446.NPCType = _0xBBCC end, _0x0446.NPCType)
-local _0xFFEA = _0xD9E1(_0xD5C1.R,"Movement","🧭")
-_0x8359(_0xFFEA,"Farm Speed","FarmSpeed", 20, 400," st/s")
-_0x9CB2(_0xFFEA,"Face Target","FaceTarget")
-_0x9CB2(_0xFFEA,"Farm From Below","FarmBelow")
-_0x8359(_0xFFEA,"Below Offset","BelowOffset", 0, 12," studs", 0.5)
-_0x9CB2(_0xFFEA,"Noclip While Farming","Noclip")
-_0x9CB2(_0xFFEA,"Auto-Slow After Rollback","AutoThrottle")
-local _0x39EC = _0xD9E1(_0xD5C1.R,"Bite Damage","🦷")
-_0x8359(_0x39EC,"Bite Delay","BiteDelay", 50, 1500," ms")
-_0x9CB2(_0x39EC,"Record My Real Bites","RecordBites", function(_0x5EED) if _0x5EED and _0xF863 then _0xF863() end end)
-_0x9CB2(_0x39EC,"Replay Recorded Bite","UseRecorded")
-local _0xE71F = _0x3EDE(_0x39EC,"Recorded","none yet")
-local _0x915C = _0xD9E1(_0xD5C1.R,"Live Status","📡")
-local _0xF022 = _0x3EDE(_0x915C,"Target","-")
-local _0xC45C = _0x3EDE(_0x915C,"Mode","Idle")
-local _0xA04F = _0x3EDE(_0x915C,"Distance","-")
-local _0xD637 = _0x3EDE(_0x915C,"Bites sent","0")
-local _0xD4A0 = _0x3EDE(_0x915C,"Last error","none")
-local _0x79FA = _0x3EDE(_0x915C,"Last damage","-")
-local _0x8903 = _0x3EDE(_0x915C,"Rollbacks","0")local _0xF4E7 = _0xD9E1(_0xA25D.L,"Player Targeting","🎯")
-_0x1279(_0xF4E7,"Select Target", function()
-local _0x593F = {}
-for _0x70AE, _0xAFE2 in pairs(_0x2B63:GetPlayers()) do
-if _0xAFE2 ~= _0x283A then table.insert(_0x593F, _0xAFE2.DisplayName .." (@".. _0xAFE2.Name ..")") end
+local _0x7152 = _0x6DF1(_0x0954.L,"Farming","⚡")
+_0x33AC(_0x7152,"Autofarm (Food)","Eat")
+_0x33AC(_0x7152,"Autofarm NPCs","KillNPC")
+_0x5D8D(_0x7152,"NPC Target", function() return {"Fishes","Crabs","Slugs"} end, function(_0x166D) _0x83EE.NPCType = _0x166D end, _0x83EE.NPCType)
+local _0x896C = _0x6DF1(_0x0954.R,"Movement","🧭")
+_0x5D52(_0x896C,"Farm Speed","FarmSpeed", 20, 400," st/s")
+_0x33AC(_0x896C,"Face Target","FaceTarget")
+_0x33AC(_0x896C,"Farm From Below","FarmBelow")
+_0x5D52(_0x896C,"Below Offset","BelowOffset", 0, 12," studs", 0.5)
+_0x33AC(_0x896C,"Noclip While Farming","Noclip")
+_0x33AC(_0x896C,"Auto-Slow After Rollback","AutoThrottle")
+local _0xD15A = _0x6DF1(_0x0954.R,"Bite Damage","🦷")
+_0x5D52(_0xD15A,"Bite Delay","BiteDelay", 50, 1500," ms")
+_0x33AC(_0xD15A,"Record My Real Bites","RecordBites", function(_0xDFB9) if _0xDFB9 and _0x50C9 then _0x50C9() end end)
+_0x33AC(_0xD15A,"Replay Recorded Bite","UseRecorded")
+local _0x5612 = _0xB40E(_0xD15A,"Recorded","none yet")
+local _0x814F = _0x6DF1(_0x0954.R,"Live Status","📡")
+local _0x329D = _0xB40E(_0x814F,"Target","-")
+local _0xF620 = _0xB40E(_0x814F,"Mode","Idle")
+local _0xA02C = _0xB40E(_0x814F,"Distance","-")
+local _0x2A12 = _0xB40E(_0x814F,"Bites sent","0")
+local _0xCC21 = _0xB40E(_0x814F,"Last error","none")
+local _0x7B90 = _0xB40E(_0x814F,"Last damage","-")
+local _0xC470 = _0xB40E(_0x814F,"Rollbacks","0")local _0x3431 = _0x6DF1(_0xABC8.L,"Player Targeting","🎯")
+_0x5D8D(_0x3431,"Select Target", function()
+local _0x26CC = {}
+for _0xDF0E, _0x0C46 in pairs(_0xB81D:GetPlayers()) do
+if _0x0C46 ~= _0xA627 then table.insert(_0x26CC, _0x0C46.DisplayName .." (@".. _0x0C46.Name ..")") end
 end
-return _0x593F
-end, function(_0x5C59)
-for _0x70AE, _0xAFE2 in pairs(_0x2B63:GetPlayers()) do
-if _0x5C59:find("(@".. _0xAFE2.Name ..")", 1, true) then _0x0446.TargetPlayer = _0xAFE2 end
+return _0x26CC
+end, function(_0x576B)
+for _0xDF0E, _0x0C46 in pairs(_0xB81D:GetPlayers()) do
+if _0x576B:find("(@".. _0x0C46.Name ..")", 1, true) then _0x83EE.TargetPlayer = _0x0C46 end
 end
 end)
-_0x9CB2(_0xF4E7,"Kill Player","KillPlayer")
-local _0xDE85 = _0xD9E1(_0xA25D.R,"Hitbox","📦")
-_0x9CB2(_0xDE85,"Hitbox Expander","Hitbox")local _0x15D9 = _0xD9E1(_0x4A64.L,"Event Farming","⭐")
-_0x1279(_0x15D9,"Event Type", function() return {"Hotspot","Boss"} end, function(_0xBBCC) _0x0446.EventType = _0xBBCC end, _0x0446.EventType)
-_0x9CB2(_0x15D9,"Auto Farm Event","EventFarm")local _0xC5DE = _0xD9E1(_0x6A67.L,"Survival","❤")
-_0x9CB2(_0xC5DE,"Auto Heal (50%)","AutoHeal")
-_0x9CB2(_0xC5DE,"Anti-AFK","AntiAfk")
-local _0x239B = _0xD9E1(_0x6A67.R,"Visuals (ESP)","👁")
-_0x9CB2(_0x239B,"Enable Player ESP","ESP")
-_0x8359(_0x239B,"ESP Transparency","ESPTransparency", 0, 100,"%")
-local _0x0305 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 34), BackgroundTransparency = 1, LayoutOrder = _0x03C2(_0x239B), ZIndex = 4}, _0x239B)
-_0x3465("UIListLayout", {FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 8), VerticalAlignment = Enum.VerticalAlignment.Center}, _0x0305)
-for _0x70AE, _0xCDA5 in ipairs({_0x4058.Accent, _0x4058.AccentLight, Color3.fromRGB(255, 70, 90), Color3.fromRGB(70, 255, 130), Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 160, 0)}) do
-local _0xCA45 = _0x3465("TextButton", {Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = _0xCDA5, Text ="", AutoButtonColor = false, ZIndex = 5}, _0x0305)
-_0xD461(_0xCA45, 15); _0x5126(_0xCA45, _0x4058.Text, 1.5, 0.6)
-_0xCA45.MouseButton1Click:Connect(function() _0x0446.ESPColor = _0xCDA5 end)
-endlocal _0x6099 = _0xD9E1(_0xED83.L,"Profiles","💾")
-local _0x5EB5
-local function _0x670A()
-local _0x8101 = {}
+_0x33AC(_0x3431,"Kill Player","KillPlayer")
+local _0x4CB3 = _0x6DF1(_0xABC8.R,"Hitbox","📦")
+_0x33AC(_0x4CB3,"Hitbox Expander","Hitbox")local _0x7892 = _0x6DF1(_0xEB2A.L,"Event Farming","⭐")
+_0x5D8D(_0x7892,"Event Type", function() return {"Hotspot","Boss"} end, function(_0x166D) _0x83EE.EventType = _0x166D end, _0x83EE.EventType)
+_0x33AC(_0x7892,"Auto Farm Event","EventFarm")local _0x5BF7 = _0x6DF1(_0x15E4.L,"Survival","❤")
+_0x33AC(_0x5BF7,"Auto Heal (50%)","AutoHeal")
+_0x33AC(_0x5BF7,"Anti-AFK","AntiAfk")
+local _0x8B23 = _0x6DF1(_0x15E4.R,"Visuals (ESP)","👁")
+_0x33AC(_0x8B23,"Enable Player ESP","ESP")
+_0x5D52(_0x8B23,"ESP Transparency","ESPTransparency", 0, 100,"%")
+local _0x672E = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 34), BackgroundTransparency = 1, LayoutOrder = _0x984D(_0x8B23), ZIndex = 4}, _0x8B23)
+_0xA493("UIListLayout", {FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 8), VerticalAlignment = Enum.VerticalAlignment.Center}, _0x672E)
+for _0xDF0E, _0x24C0 in ipairs({_0x9140.Accent, _0x9140.AccentLight, Color3.fromRGB(255, 70, 90), Color3.fromRGB(70, 255, 130), Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 160, 0)}) do
+local _0x2E49 = _0xA493("TextButton", {Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = _0x24C0, Text ="", AutoButtonColor = false, ZIndex = 5}, _0x672E)
+_0xED35(_0x2E49, 15); _0x0806(_0x2E49, _0x9140.Text, 1.5, 0.6)
+_0x2E49.MouseButton1Click:Connect(function() _0x83EE.ESPColor = _0x24C0 end)
+endlocal _0x200B = _0x6DF1(_0xFEFE.L,"Profiles","💾")
+local _0xA4E3
+local function _0xE69D()
+local _0xD5C2 = {}
 if isfolder and isfolder("QuantumConfigs") then
-local _0xB399, _0x8438 = pcall(listfiles,"QuantumConfigs")
-if _0xB399 and _0x8438 then
-for _0x70AE, file in ipairs(_0x8438) do
-local _0x1978 = file:match("([^/\\]+)%.json$")
-if _0x1978 then table.insert(_0x8101, _0x1978) end
+local _0x4E29, _0x3DCD = pcall(listfiles,"QuantumConfigs")
+if _0x4E29 and _0x3DCD then
+for _0xDF0E, file in ipairs(_0x3DCD) do
+local _0x1F55 = file:match("([^/\\]+)%.json$")
+if _0x1F55 then table.insert(_0xD5C2, _0x1F55) end
 end
 end
 end
-if #_0x8101 == 0 then table.insert(_0x8101,"Default") end
-return _0x8101
+if #_0xD5C2 == 0 then table.insert(_0xD5C2,"Default") end
+return _0xD5C2
 end
-local _0xDB43 = _0x1279(_0x6099,"Config", _0x670A, function(sel)
-_0x0446.ActiveConfig = sel
-if _0x5EB5 then _0x5EB5.Text = sel end
-end, _0x0446.ActiveConfig)
-_0x5EB5 = _0x3465("TextBox", {
-Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x4058.Panel, Text = _0x0446.ActiveConfig, PlaceholderText ="Config name...", PlaceholderColor3 = _0x4058.TextDim,
-TextColor3 = _0x4058.Text, Font = Enum.Font.GothamMedium, TextSize = 14, ClearTextOnFocus = false, LayoutOrder = _0x03C2(_0x6099), ZIndex = 4
-}, _0x6099)
-_0xD461(_0x5EB5, 8); _0x5126(_0x5EB5, _0x4058.Accent, 1, 0.6)
-local _0xBC74 = _0x3465("Frame", {Size = UDim2.new(1, 0, 0, 80), BackgroundTransparency = 1, LayoutOrder = _0x03C2(_0x6099), ZIndex = 4}, _0x6099)
-_0x3465("UIGridLayout", {CellSize = UDim2.new(0.5, -4, 0, 36), CellPadding = UDim2.new(0, 8, 0, 8), SortOrder = Enum.SortOrder.LayoutOrder}, _0xBC74)
-local _0x0803 = _0x5EA2(_0xBC74,"Create","info", 1)
-local _0xB039 = _0x5EA2(_0xBC74,"Save","primary", 2)
-local _0x2C5A = _0x5EA2(_0xBC74,"Load","primary", 3)
-local _0x7D34 = _0x5EA2(_0xBC74,"Delete","danger", 4)
-local _0x76FF = _0xD9E1(_0xED83.L,"Preferences","🔧")
-_0x9CB2(_0x76FF,"Auto-Load on Exec","AutoLoad")
-local _0x734B = _0xD9E1(_0xED83.R,"Keybinds","⌨")
-_0xDE73(_0x734B,"UI Toggle","UI")
-_0xDE73(_0x734B,"Auto Eat","Eat")
-_0xDE73(_0x734B,"Auto Kill NPC","KillNPC")
-_0xDE73(_0x734B,"Kill Player","KillPlayer")
-_0xDE73(_0x734B,"Hitbox","Hitbox")local function _0x939E()
+local _0xA811 = _0x5D8D(_0x200B,"Config", _0xE69D, function(sel)
+_0x83EE.ActiveConfig = sel
+if _0xA4E3 then _0xA4E3.Text = sel end
+end, _0x83EE.ActiveConfig)
+_0xA4E3 = _0xA493("TextBox", {
+Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = _0x9140.Panel, Text = _0x83EE.ActiveConfig, PlaceholderText ="Config name...", PlaceholderColor3 = _0x9140.TextDim,
+TextColor3 = _0x9140.Text, Font = Enum.Font.GothamMedium, TextSize = 14, ClearTextOnFocus = false, LayoutOrder = _0x984D(_0x200B), ZIndex = 4
+}, _0x200B)
+_0xED35(_0xA4E3, 8); _0x0806(_0xA4E3, _0x9140.Accent, 1, 0.6)
+local _0x5B85 = _0xA493("Frame", {Size = UDim2.new(1, 0, 0, 80), BackgroundTransparency = 1, LayoutOrder = _0x984D(_0x200B), ZIndex = 4}, _0x200B)
+_0xA493("UIGridLayout", {CellSize = UDim2.new(0.5, -4, 0, 36), CellPadding = UDim2.new(0, 8, 0, 8), SortOrder = Enum.SortOrder.LayoutOrder}, _0x5B85)
+local _0x0484 = _0xA63B(_0x5B85,"Create","info", 1)
+local _0x489F = _0xA63B(_0x5B85,"Save","primary", 2)
+local _0xCC76 = _0xA63B(_0x5B85,"Load","primary", 3)
+local _0x8FD8 = _0xA63B(_0x5B85,"Delete","danger", 4)
+local _0x1E10 = _0x6DF1(_0xFEFE.L,"Preferences","🔧")
+_0x33AC(_0x1E10,"Auto-Load on Exec","AutoLoad")
+local _0xFB71 = _0x6DF1(_0xFEFE.R,"Keybinds","⌨")
+_0x0D14(_0xFB71,"UI Toggle","UI")
+_0x0D14(_0xFB71,"Auto Eat","Eat")
+_0x0D14(_0xFB71,"Auto Kill NPC","KillNPC")
+_0x0D14(_0xFB71,"Kill Player","KillPlayer")
+_0x0D14(_0xFB71,"Hitbox","Hitbox")local function _0x415B()
 return {
-Toggles = _0x0446.Toggles, Values = _0x0446.Values,
-ESPColor = {_0x0446.ESPColor.R, _0x0446.ESPColor.G, _0x0446.ESPColor.B},
-Keybinds = {UI = _0x0446.Keybinds.UI.Name, Eat = _0x0446.Keybinds.Eat.Name, KillNPC = _0x0446.Keybinds.KillNPC.Name, KillPlayer = _0x0446.Keybinds.KillPlayer.Name, Hitbox = _0x0446.Keybinds.Hitbox.Name},
-SelectedFish = _0x0446.SelectedFish, NPCType = _0x0446.NPCType, EventType = _0x0446.EventType
+Toggles = _0x83EE.Toggles, Values = _0x83EE.Values,
+ESPColor = {_0x83EE.ESPColor.R, _0x83EE.ESPColor.G, _0x83EE.ESPColor.B},
+Keybinds = {UI = _0x83EE.Keybinds.UI.Name, Eat = _0x83EE.Keybinds.Eat.Name, KillNPC = _0x83EE.Keybinds.KillNPC.Name, KillPlayer = _0x83EE.Keybinds.KillPlayer.Name, Hitbox = _0x83EE.Keybinds.Hitbox.Name},
+SelectedFish = _0x83EE.SelectedFish, NPCType = _0x83EE.NPCType, EventType = _0x83EE.EventType
 }
 end
-local function _0x8B29(_0x5C59)
+local function _0x3C5C(_0x576B)
 pcall(function()
 if not isfolder("QuantumConfigs") then makefolder("QuantumConfigs") end
-writefile("QuantumConfigs/".. _0x5C59 ..".json", _0x5458:JSONEncode(_0x939E()))
+writefile("QuantumConfigs/".. _0x576B ..".json", _0xED31:JSONEncode(_0x415B()))
 end)
-_0xDB43.Refresh()
+_0xA811.Refresh()
 end
-local function _0x5D4A(_0x1978)
-local _0xC0E8, _0x3CA6 = pcall(function() return Enum.KeyCode[_0x1978] end)
-return _0xC0E8 and _0x3CA6 or Enum.KeyCode.Unknown
+local function _0xF06B(_0x1F55)
+local _0x7F9D, _0x5E88 = pcall(function() return Enum.KeyCode[_0x1F55] end)
+return _0x7F9D and _0x5E88 or Enum.KeyCode.Unknown
 end
-local function _0x2E85(_0x5C59)
-local _0xC43A ="QuantumConfigs/".. _0x5C59 ..".json"if not (isfile and isfile(_0xC43A)) then return false end
-local _0xB399, _0x7572 = pcall(function() return _0x5458:JSONDecode(readfile(_0xC43A)) end)
-if not (_0xB399 and type(_0x7572) =="table") then return false end
-if _0x7572.Toggles then
-for _0xEFB3, _0xBBCC in pairs(_0x7572.Toggles) do
-if _0x0446.Toggles[_0xEFB3] ~= nil and type(_0xBBCC) =="boolean"then
-if _0xF7CF[_0xEFB3] then _0xF7CF[_0xEFB3].Set(_0xBBCC) else _0x0446.Toggles[_0xEFB3] = _0xBBCC end
+local function _0x7AD6(_0x576B)
+local _0x1C18 ="QuantumConfigs/".. _0x576B ..".json"if not (isfile and isfile(_0x1C18)) then return false end
+local _0x4E29, _0xF308 = pcall(function() return _0xED31:JSONDecode(readfile(_0x1C18)) end)
+if not (_0x4E29 and type(_0xF308) =="table") then return false end
+if _0xF308.Toggles then
+for _0x3A9C, _0x166D in pairs(_0xF308.Toggles) do
+if _0x83EE.Toggles[_0x3A9C] ~= nil and type(_0x166D) =="boolean"then
+if _0x2079[_0x3A9C] then _0x2079[_0x3A9C].Set(_0x166D) else _0x83EE.Toggles[_0x3A9C] = _0x166D end
 end
 end
 end
-if _0x7572.Values then
-for _0xEFB3, _0xBBCC in pairs(_0x7572.Values) do if _0x1CF0[_0xEFB3] then _0x1CF0[_0xEFB3].Set(_0xBBCC) end end
+if _0xF308.Values then
+for _0x3A9C, _0x166D in pairs(_0xF308.Values) do if _0xCC88[_0x3A9C] then _0xCC88[_0x3A9C].Set(_0x166D) end end
 end
-if _0x7572.ESPColor then _0x0446.ESPColor = Color3.new(_0x7572.ESPColor[1], _0x7572.ESPColor[2], _0x7572.ESPColor[3]) end
-if _0x7572.SelectedFish then _0x0446.SelectedFish = _0x7572.SelectedFish; _0xF7FD.SetText(_0x7572.SelectedFish) end
-if _0x7572.NPCType then _0x0446.NPCType = _0x7572.NPCType end
-if _0x7572.EventType then _0x0446.EventType = _0x7572.EventType end
-if _0x7572.Keybinds then
-for _0xEFB3, _0xBBCC in pairs(_0x7572.Keybinds) do
-if _0x0446.Keybinds[_0xEFB3] ~= nil then _0x0446.Keybinds[_0xEFB3] = _0x5D4A(_0xBBCC) end
-if _0x7A84[_0xEFB3] then _0x7A84[_0xEFB3]() end
+if _0xF308.ESPColor then _0x83EE.ESPColor = Color3.new(_0xF308.ESPColor[1], _0xF308.ESPColor[2], _0xF308.ESPColor[3]) end
+if _0xF308.SelectedFish then _0x83EE.SelectedFish = _0xF308.SelectedFish; _0x3E3B.SetText(_0xF308.SelectedFish) end
+if _0xF308.NPCType then _0x83EE.NPCType = _0xF308.NPCType end
+if _0xF308.EventType then _0x83EE.EventType = _0xF308.EventType end
+if _0xF308.Keybinds then
+for _0x3A9C, _0x166D in pairs(_0xF308.Keybinds) do
+if _0x83EE.Keybinds[_0x3A9C] ~= nil then _0x83EE.Keybinds[_0x3A9C] = _0xF06B(_0x166D) end
+if _0xE757[_0x3A9C] then _0xE757[_0x3A9C]() end
 end
-if _0x0446.Keybinds.UI == Enum.KeyCode.Unknown then _0x0446.Keybinds.UI = Enum.KeyCode.RightAlt; _0x7A84.UI() end
+if _0x83EE.Keybinds.UI == Enum.KeyCode.Unknown then _0x83EE.Keybinds.UI = Enum.KeyCode.RightAlt; _0xE757.UI() end
 end
 return true
 end
-_0x0803.MouseButton1Click:Connect(function()
-local _0x1978 = _0x5EB5.Text
-if _0x1978 ~=""then _0x0446.ActiveConfig = _0x1978; _0x8B29(_0x1978); _0xDB43.SetText(_0x1978) end
+_0x0484.MouseButton1Click:Connect(function()
+local _0x1F55 = _0xA4E3.Text
+if _0x1F55 ~=""then _0x83EE.ActiveConfig = _0x1F55; _0x3C5C(_0x1F55); _0xA811.SetText(_0x1F55) end
 end)
-_0xB039.MouseButton1Click:Connect(function() _0x8B29(_0x0446.ActiveConfig) end)
-_0x2C5A.MouseButton1Click:Connect(function() _0x2E85(_0x0446.ActiveConfig) end)
-_0x7D34.MouseButton1Click:Connect(function()
-local _0xC43A ="QuantumConfigs/".. _0x0446.ActiveConfig ..".json"if isfile and isfile(_0xC43A) then pcall(delfile, _0xC43A); _0xDB43.Refresh() end
-end)local _0x60D0, _0xAE8E = nil,"None"local _0x8087, _0x9B00, _0x6AD5, _0x721F = 0,"", 0, nil
-local _0x077D, _0xE343, _0xE40B, _0x9C32 = 0, 0, 0, 0
-local _0x3F00, _0x20F4 = nil, nil
-local _0x6844 = {}
-local _0x5409 = setmetatable({}, {__mode ="k"})
-local _0xF300 = nil
-local _0x2273, _0x76D9 = 0, 0
-local _0x885D ="-"local function _0xB61D()
-if not _0x3F00 or not _0x3F00.Parent or tick() - _0xE343 > 0.5 then
-_0x3F00 = workspace:FindFirstChild(_0x283A.Name)
-_0x20F4 = nil
-if _0x3F00 then _0x20F4 = _0x3F00:FindFirstChild("Head") or _0x3F00.PrimaryPart or _0x3F00:FindFirstChildWhichIsA("BasePart", true) end
-_0xE343 = tick()
+_0x489F.MouseButton1Click:Connect(function() _0x3C5C(_0x83EE.ActiveConfig) end)
+_0xCC76.MouseButton1Click:Connect(function() _0x7AD6(_0x83EE.ActiveConfig) end)
+_0x8FD8.MouseButton1Click:Connect(function()
+local _0x1C18 ="QuantumConfigs/".. _0x83EE.ActiveConfig ..".json"if isfile and isfile(_0x1C18) then pcall(delfile, _0x1C18); _0xA811.Refresh() end
+end)local _0xCB92, _0x847C = nil,"None"local _0xB0E7, _0xB442, _0x3059, _0x3251 = 0,"", 0, nil
+local _0x193A, _0x8DA7, _0xD40E, _0x5991 = 0, 0, 0, 0
+local _0xB634, _0x15FA = nil, nil
+local _0xEED2 = {}
+local _0x1389 = setmetatable({}, {__mode ="k"})
+local _0x3B0C = nil
+local _0xD948, _0xD671 = 0, 0
+local _0xFBA8 ="-"local function _0xAFC5()
+if not _0xB634 or not _0xB634.Parent or tick() - _0x8DA7 > 0.5 then
+_0xB634 = workspace:FindFirstChild(_0xA627.Name)
+_0x15FA = nil
+if _0xB634 then _0x15FA = _0xB634:FindFirstChild("Head") or _0xB634.PrimaryPart or _0xB634:FindFirstChildWhichIsA("BasePart", true) end
+_0x8DA7 = tick()
 end
-return _0x3F00, _0x20F4
+return _0xB634, _0x15FA
 end
-local function _0xE499(inst)
+local function _0xF039(inst)
 if not inst then return nil end
 if inst:IsA("BasePart") then return inst.Position end
 if inst:IsA("Model") then
-local _0xC0E8, _0xA105 = pcall(function() return inst:GetPivot() end)
-return _0xC0E8 and _0xA105.Position or nil
+local _0x7F9D, _0x1FA7 = pcall(function() return inst:GetPivot() end)
+return _0x7F9D and _0x1FA7.Position or nil
 end
 end
-local function _0xC7D8(inst)
+local function _0x1D2C(inst)
 if inst:IsA("BasePart") then return inst end
 return inst.PrimaryPart or inst:FindFirstChildWhichIsA("BasePart", true)
 end
-local function _0xDDB2(i) local _0x95D3 = _0x5409[i]; return _0x95D3 and _0x95D3 > tick() end
-local function _0xBBEF()
-local _0xDA21 = _0x0446.Toggles
-return _0xDA21.Eat or _0xDA21.KillNPC or _0xDA21.KillPlayer or _0xDA21.EventFarm
-endlocal _0x7311 = {_0x8D05 = true, _0x7FE1 = true, ReportBiteClock = true, ReportCombo = true}
-local _0xEA25 = {}
-local _0x53A4 = 0
-local _0x9BB6 = nil
-local _0x9D89 = {}
-local function _0x1618(_0xFE49)
-local _0x394F = {}
-for i = 1, _0xFE49.n do
-local _0xBBCC = _0xFE49[i]
-local _0x95D3 = typeof(_0xBBCC)
-if _0x95D3 =="Instance"then
-local _0xC0E8, _0x5C59 = pcall(function() return _0xBBCC:GetFullName() end)
-_0x394F[i] ="Instance(".. (_0xC0E8 and _0x5C59 or _0xBBCC.Name) ..")"else
-_0x394F[i] = _0x95D3 .."(".. tostring(_0xBBCC) ..")"end
+local function _0x3697(i) local _0xE38E = _0x1389[i]; return _0xE38E and _0xE38E > tick() end
+local function _0xF61D()
+local _0xA290 = _0x83EE.Toggles
+return _0xA290.Eat or _0xA290.KillNPC or _0xA290.KillPlayer or _0xA290.EventFarm
+endlocal _0x245A = {_0x1F07 = true, _0xB98B = true, ReportBiteClock = true, ReportCombo = true}
+local _0xC149 = {}
+local _0x815F = 0
+local _0x7C24 = nil
+local _0x06DC = {}
+local function _0x729F(_0xBB05)
+local _0xAA6A = {}
+for i = 1, _0xBB05.n do
+local _0x166D = _0xBB05[i]
+local _0xE38E = typeof(_0x166D)
+if _0xE38E =="Instance"then
+local _0x7F9D, _0x576B = pcall(function() return _0x166D:GetFullName() end)
+_0xAA6A[i] ="Instance(".. (_0x7F9D and _0x576B or _0x166D.Name) ..")"else
+_0xAA6A[i] = _0xE38E .."(".. tostring(_0x166D) ..")"end
 end
-return table.concat(_0x394F,", ")
-endlocal function _0xEC38(_0xBBCC)
-if _0xBBCC <= 100 then return nil end
-if math.abs(_0xBBCC - os.clock()) < 5 then return"clock"end
-if math.abs(_0xBBCC - tick()) < 5 then return"tick"end
-local _0xC0E8, _0x6E87 = pcall(function() return workspace:GetServerTimeNow() end)
-if _0xC0E8 and math.abs(_0xBBCC - _0x6E87) < 5 then return"server"end
+return table.concat(_0xAA6A,", ")
+endlocal function _0x0E75(_0x166D)
+if _0x166D <= 100 then return nil end
+if math.abs(_0x166D - os.clock()) < 5 then return"clock"end
+if math.abs(_0x166D - tick()) < 5 then return"tick"end
+local _0x7F9D, _0x1513 = pcall(function() return workspace:GetServerTimeNow() end)
+if _0x7F9D and math.abs(_0x166D - _0x1513) < 5 then return"server"end
 return nil
 end
-local function _0x0714()
-local _0x593F = {}
-for _0x5C59, rec in pairs(_0xEA25) do table.insert(_0x593F, {_0x5C59 = _0x5C59, seq = rec.seq}) end
-table.sort(_0x593F, function(_0xD6F3, _0xCA45) return _0xD6F3.seq < _0xCA45.seq end)
-local _0xF646 = {}
-for _0x70AE, e in ipairs(_0x593F) do table.insert(_0xF646, e.name) end
-return #_0xF646 > 0 and table.concat(_0xF646,", ") or"none yet"end
-local function _0x9EBD(remoteName, _0xFE49)
-local _0x8B05 = {}
-for i = 1, _0xFE49.n do
-if type(_0xFE49[i]) =="number"then _0x8B05[i] = _0xEC38(_0xFE49[i]) end
+local function _0x9DCA()
+local _0x26CC = {}
+for _0x576B, rec in pairs(_0xC149) do table.insert(_0x26CC, {_0x576B = _0x576B, seq = rec.seq}) end
+table.sort(_0x26CC, function(_0xB7D1, _0x2E49) return _0xB7D1.seq < _0x2E49.seq end)
+local _0xF51C = {}
+for _0xDF0E, e in ipairs(_0x26CC) do table.insert(_0xF51C, e.name) end
+return #_0xF51C > 0 and table.concat(_0xF51C,", ") or"none yet"end
+local function _0x39A2(remoteName, _0xBB05)
+local _0x187B = {}
+for i = 1, _0xBB05.n do
+if type(_0xBB05[i]) =="number"then _0x187B[i] = _0x0E75(_0xBB05[i]) end
 end
-_0x53A4 += 1
-_0xEA25[remoteName] = {_0xFE49 = _0xFE49, _0x8B05 = _0x8B05, seq = _0x53A4}local _0xF31A =""if remoteName =="BiteCreature"or remoteName =="BiteFood"then
-local _0x470B = tick()
-if _0x9BB6 then
-local _0x6FFE = (_0x470B - _0x9BB6) * 1000
-if _0x6FFE >= 80 and _0x6FFE <= 3000 then
-table.insert(_0x9D89, _0x6FFE)
-if #_0x9D89 > 6 then table.remove(_0x9D89, 1) end
-local _0x28A6 = math.huge
-for _0x70AE, g in ipairs(_0x9D89) do _0x28A6 = math.min(_0x28A6, g) end
-if _0x1CF0.BiteDelay then _0x1CF0.BiteDelay.Set(_0x28A6 + 20) end
-_0xF31A = string.format("  | %.0f ms since last", _0x6FFE)
-end
-end
-_0x9BB6 = _0x470B
-end
-_0xE71F(_0x0714(), _0x4058.Good)
-local _0x4756 ="[Quantum] real ".. remoteName .."(".. _0x1618(_0xFE49) ..")".. _0xF31A
-print(_0x4756)
-if appendfile then pcall(appendfile,"QuantumBiteLog.txt", _0x4756 .."\n") end
-end
-local _0xDBE1 = false
-_0xF863 = function()
-if _0xDBE1 then return end
-if not (hookmetamethod and getnamecallmethod) then _0xE71F("executor unsupported", _0x4058.Danger); return end
-local _0xDFA4
-local function _0x79DF(self, ...)
-local _0x68EE = getnamecallmethod()
-if _0xAC07 and _0x68EE =="FireServer"and _0x0446.Toggles.RecordBites and typeof(self) =="Instance"and _0x7311[self.Name] and self.Parent == _0xF313 and not (checkcaller and checkcaller()) then
-task.defer(_0x9EBD, self.Name, table.pack(...))
-end
-if setnamecallmethod then setnamecallmethod(_0x68EE) end
-return _0xDFA4(self, ...)
-end
-pcall(function() _0xDFA4 = hookmetamethod(game,"__namecall", newcclosure and newcclosure(_0x79DF) or _0x79DF) end)
-if _0xDFA4 then _0xDBE1 = true; _0xE71F("listening - bite something", _0x4058.AccentLight)
-else _0xE71F("hook unavailable", _0x4058.Danger) end
-endlocal function _0x89E9(rec, _0x040D, _0xD2C9, _0x2F12, isMain, mainRemote)
-local _0x97EB = rec.args
-local _0xFE49 = {_0x1978 = _0x97EB.n}
-local _0xF3A2, _0x6FC2 = 0, false
-for i = 1, _0x97EB.n do
-local _0xBBCC = _0x97EB[i]
-local _0x95D3 = typeof(_0xBBCC)
-if _0x95D3 =="number"then
-local _0xC4AD = rec.kinds[i]
-if _0xC4AD =="clock"then _0xFE49[i] = os.clock()
-elseif _0xC4AD =="tick"then _0xFE49[i] = tick()
-elseif _0xC4AD =="server"then _0xFE49[i] = workspace:GetServerTimeNow()
-elseif isMain and mainRemote == _0x7FE1 and not _0x6FC2 then _0xFE49[i] = _0xD2C9; _0x6FC2 = true
-else _0xFE49[i] = _0xBBCC end
-elseif isMain and _0x95D3 =="Instance"then
-_0xF3A2 += 1
-if _0xF3A2 == 1 then _0xFE49[i] = _0x040D
-elseif _0xF3A2 == 2 then _0xFE49[i] = (_0x040D:IsA("Model") and _0xC7D8(_0x040D)) or _0x040D
-else _0xFE49[i] = _0xBBCC end
-elseif isMain and _0x95D3 =="Vector3"then _0xFE49[i] = _0x2F12
-elseif isMain and _0x95D3 =="CFrame"then _0xFE49[i] = CFrame.new(_0x2F12)
-else _0xFE49[i] = _0xBBCC end
-end
-return _0xFE49
-end
-local function _0xF9FD(remote, _0x040D, _0xD2C9, _0x2F12)
-local _0x5E29 = _0x0446.Toggles.UseRecorded and _0xEA25[remote.Name]
-if _0x5E29 then
-local _0xD6F3 = _0x89E9(_0x5E29, _0x040D, _0xD2C9, _0x2F12, true, remote)
-remote:FireServer(table.unpack(_0xD6F3, 1, _0xD6F3.n))
-local _0x540F = {}
-for _0x5C59, rec in pairs(_0xEA25) do
-if _0x5C59 ~="BiteCreature"and _0x5C59 ~="BiteFood"then table.insert(_0x540F, {_0x5C59 = _0x5C59, rec = rec}) end
-end
-table.sort(_0x540F, function(x, y) return x.rec.seq < y.rec.seq end)
-for _0x70AE, _0xCDA5 in ipairs(_0x540F) do
-local _0x4CDF = _0xF313:FindFirstChild(_0xCDA5.name)
-if _0x4CDF then
-local _0x95E1 = _0x89E9(_0xCDA5.rec, _0x040D, _0xD2C9, _0x2F12, false, _0x4CDF)
-_0x4CDF:FireServer(table.unpack(_0x95E1, 1, _0x95E1.n))
+_0x815F += 1
+_0xC149[remoteName] = {_0xBB05 = _0xBB05, _0x187B = _0x187B, seq = _0x815F}local _0x96AF =""if remoteName =="BiteCreature"or remoteName =="BiteFood"then
+local _0xBDC9 = tick()
+if _0x7C24 then
+local _0x80F7 = (_0xBDC9 - _0x7C24) * 1000
+if _0x80F7 >= 80 and _0x80F7 <= 3000 then
+table.insert(_0x06DC, _0x80F7)
+if #_0x06DC > 6 then table.remove(_0x06DC, 1) end
+local _0xF643 = math.huge
+for _0xDF0E, g in ipairs(_0x06DC) do _0xF643 = math.min(_0xF643, g) end
+if _0xCC88.BiteDelay then _0xCC88.BiteDelay.Set(_0xF643 + 20) end
+_0x96AF = string.format("  | %.0f ms since last", _0x80F7)
 end
 end
-elseif remote == _0x7FE1 then
-remote:FireServer(_0x040D, _0xD2C9, true)
+_0x7C24 = _0xBDC9
+end
+_0x5612(_0x9DCA(), _0x9140.Good)
+local _0xBC88 ="[Quantum] real ".. remoteName .."(".. _0x729F(_0xBB05) ..")".. _0x96AF
+print(_0xBC88)
+if appendfile then pcall(appendfile,"QuantumBiteLog.txt", _0xBC88 .."\n") end
+end
+local _0x3019 = false
+_0x50C9 = function()
+if _0x3019 then return end
+if not (hookmetamethod and getnamecallmethod) then _0x5612("executor unsupported", _0x9140.Danger); return end
+local _0x8127
+local function _0xFEB8(self, ...)
+local _0x01C8 = getnamecallmethod()
+if _0x3635 and _0x01C8 =="FireServer"and _0x83EE.Toggles.RecordBites and typeof(self) =="Instance"and _0x245A[self.Name] and self.Parent == _0x18A0 and not (checkcaller and checkcaller()) then
+task.defer(_0x39A2, self.Name, table.pack(...))
+end
+if setnamecallmethod then setnamecallmethod(_0x01C8) end
+return _0x8127(self, ...)
+end
+pcall(function() _0x8127 = hookmetamethod(game,"__namecall", newcclosure and newcclosure(_0xFEB8) or _0xFEB8) end)
+if _0x8127 then _0x3019 = true; _0x5612("listening - bite something", _0x9140.AccentLight)
+else _0x5612("hook unavailable", _0x9140.Danger) end
+endlocal function _0x35C8(rec, _0x1E4D, _0x711A, _0xC775, isMain, mainRemote)
+local _0x94B4 = rec.args
+local _0xBB05 = {_0x1F55 = _0x94B4.n}
+local _0xA900, _0x54ED = 0, false
+for i = 1, _0x94B4.n do
+local _0x166D = _0x94B4[i]
+local _0xE38E = typeof(_0x166D)
+if _0xE38E =="number"then
+local _0x79B2 = rec.kinds[i]
+if _0x79B2 =="clock"then _0xBB05[i] = os.clock()
+elseif _0x79B2 =="tick"then _0xBB05[i] = tick()
+elseif _0x79B2 =="server"then _0xBB05[i] = workspace:GetServerTimeNow()
+elseif isMain and mainRemote == _0xB98B and not _0x54ED then _0xBB05[i] = _0x711A; _0x54ED = true
+else _0xBB05[i] = _0x166D end
+elseif isMain and _0xE38E =="Instance"then
+_0xA900 += 1
+if _0xA900 == 1 then _0xBB05[i] = _0x1E4D
+elseif _0xA900 == 2 then _0xBB05[i] = (_0x1E4D:IsA("Model") and _0x1D2C(_0x1E4D)) or _0x1E4D
+else _0xBB05[i] = _0x166D end
+elseif isMain and _0xE38E =="Vector3"then _0xBB05[i] = _0xC775
+elseif isMain and _0xE38E =="CFrame"then _0xBB05[i] = CFrame.new(_0xC775)
+else _0xBB05[i] = _0x166D end
+end
+return _0xBB05
+end
+local function _0x4985(remote, _0x1E4D, _0x711A, _0xC775)
+local _0x09DE = _0x83EE.Toggles.UseRecorded and _0xC149[remote.Name]
+if _0x09DE then
+local _0xB7D1 = _0x35C8(_0x09DE, _0x1E4D, _0x711A, _0xC775, true, remote)
+remote:FireServer(table.unpack(_0xB7D1, 1, _0xB7D1.n))
+local _0xFDA1 = {}
+for _0x576B, rec in pairs(_0xC149) do
+if _0x576B ~="BiteCreature"and _0x576B ~="BiteFood"then table.insert(_0xFDA1, {_0x576B = _0x576B, rec = rec}) end
+end
+table.sort(_0xFDA1, function(x, y) return x.rec.seq < y.rec.seq end)
+for _0xDF0E, _0x24C0 in ipairs(_0xFDA1) do
+local _0xDC11 = _0x18A0:FindFirstChild(_0x24C0.name)
+if _0xDC11 then
+local _0xFF86 = _0x35C8(_0x24C0.rec, _0x1E4D, _0x711A, _0xC775, false, _0xDC11)
+_0xDC11:FireServer(table.unpack(_0xFF86, 1, _0xFF86.n))
+end
+end
+elseif remote == _0xB98B then
+remote:FireServer(_0x1E4D, _0x711A, true)
 else
-remote:FireServer(_0x040D)
+remote:FireServer(_0x1E4D)
 end
-endlocal _0xD273 = _0xF313:FindFirstChild("DamageDealt")
-if _0xD273 then
-_0x6EBB(_0xD273.OnClientEvent:Connect(function(...)
-local _0xD6F3 = table.pack(...)
-local _0x4D66 = {}
-for i = 1, _0xD6F3.n do
-if type(_0xD6F3[i]) =="number"then table.insert(_0x4D66, string.format("%.1f", _0xD6F3[i])) end
+endlocal _0x417C = _0x18A0:FindFirstChild("DamageDealt")
+if _0x417C then
+_0x99D0(_0x417C.OnClientEvent:Connect(function(...)
+local _0xB7D1 = table.pack(...)
+local _0xAF78 = {}
+for i = 1, _0xB7D1.n do
+if type(_0xB7D1[i]) =="number"then table.insert(_0xAF78, string.format("%.1f", _0xB7D1[i])) end
 end
-_0x885D = #_0x4D66 > 0 and table.concat(_0x4D66," / ") or"hit"end))
-endlocal function _0x414C(_0xAFE2, _0x4297, radius)
-local _0x1427 = workspace:FindFirstChild("LiveFood")
-if not _0x1427 then return nil end
-local _0xF6B8, _0x2938 = nil, math.huge
-for _0x70AE, _0xBBCC in ipairs(_0x1427:GetChildren()) do
-local _0xB012 = _0xF135[_0xBBCC.Name]
-if _0xB012 and not _0xDDB2(_0xBBCC) then
-local _0x84F7 = _0xE499(_0xBBCC)
-if _0x84F7 and (not _0x4297 or (_0x84F7 - _0x4297).Magnitude <= radius) then
-local _0xCB4A = (_0xAFE2 - _0x84F7).Magnitude - _0xB012 * 10
-if _0xCB4A < _0x2938 then _0xF6B8, _0x2938 = _0xBBCC, _0xCB4A end
-end
-end
-end
-return _0xF6B8
-end
-local function _0x7DEF(_0xAFE2)
-local _0x1427 = workspace:FindFirstChild("NPCs")
-if not _0x1427 then return nil end
-local _0xF6B8, _0xD2C9 = nil, math.huge
-for _0x70AE, _0xBBCC in ipairs(_0x1427:GetChildren()) do
-local _0x1978 = _0xBBCC.Name:lower()
-if not _0xDDB2(_0xBBCC) and ((_0x0446.NPCType =="Fishes"and _0x1978:find("fish")) or (_0x0446.NPCType =="Crabs"and _0x1978:find("crab")) or (_0x0446.NPCType =="Slugs"and _0x1978:find("slug"))) then
-local _0x84F7 = _0xE499(_0xBBCC)
-if _0x84F7 then
-local _0x8A04 = (_0xAFE2 - _0x84F7).Magnitude
-if _0x8A04 < _0xD2C9 then _0xF6B8, _0xD2C9 = _0xBBCC, _0x8A04 end
+_0xFBA8 = #_0xAF78 > 0 and table.concat(_0xAF78," / ") or"hit"end))
+endlocal function _0x1A0B(_0x0C46, _0xE3B8, radius)
+local _0x612F = workspace:FindFirstChild("LiveFood")
+if not _0x612F then return nil end
+local _0xD552, _0x631D = nil, math.huge
+for _0xDF0E, _0x166D in ipairs(_0x612F:GetChildren()) do
+local _0x0E06 = _0xD77B[_0x166D.Name]
+if _0x0E06 and not _0x3697(_0x166D) then
+local _0x8116 = _0xF039(_0x166D)
+if _0x8116 and (not _0xE3B8 or (_0x8116 - _0xE3B8).Magnitude <= radius) then
+local _0x286B = (_0x0C46 - _0x8116).Magnitude - _0x0E06 * 10
+if _0x286B < _0x631D then _0xD552, _0x631D = _0x166D, _0x286B end
 end
 end
 end
-return _0xF6B8
+return _0xD552
 end
-local function _0x40A2()
-if _0xF300 and _0xF300.Parent then return _0xF300 end
-if tick() - _0x9C32 < 2 then return nil end
-_0x9C32 = tick()
-_0xF300 = nil
-for _0x70AE, _0xBBCC in ipairs(workspace:GetDescendants()) do
-local _0x1978 = _0xBBCC.Name:lower()
-if _0x0446.EventType =="Hotspot"then
-if _0x1978:find("hotspot") and (_0xBBCC:IsA("BasePart") or _0xBBCC:IsA("Model")) then _0xF300 = _0xBBCC; break end
-elseif _0xBBCC:IsA("Model") and not _0x1978:find("minion") and (_0x1978:find("boss") or _0x1978:find("megamouth") or _0x1978:find("megalodon")) then
-_0xF300 = _0xBBCC; break
+local function _0x3D72(_0x0C46)
+local _0x612F = workspace:FindFirstChild("NPCs")
+if not _0x612F then return nil end
+local _0xD552, _0x711A = nil, math.huge
+for _0xDF0E, _0x166D in ipairs(_0x612F:GetChildren()) do
+local _0x1F55 = _0x166D.Name:lower()
+if not _0x3697(_0x166D) and ((_0x83EE.NPCType =="Fishes"and _0x1F55:find("fish")) or (_0x83EE.NPCType =="Crabs"and _0x1F55:find("crab")) or (_0x83EE.NPCType =="Slugs"and _0x1F55:find("slug"))) then
+local _0x8116 = _0xF039(_0x166D)
+if _0x8116 then
+local _0x66C0 = (_0x0C46 - _0x8116).Magnitude
+if _0x66C0 < _0x711A then _0xD552, _0x711A = _0x166D, _0x66C0 end
 end
 end
-return _0xF300
 end
-local function _0x8883(inst, _0xC4AD)
-_0x60D0, _0xAE8E, _0x8087 = inst, inst and _0xC4AD or"None", tick()
-_0x6AD5 = math.huge
+return _0xD552
 end
-local function _0x4E85()
-local _0x70AE, _0x87C0 = _0xB61D()
-if not _0x87C0 then _0x8883(nil); return end
-local _0xDA21 = _0x0446.Toggles
-local _0x17F0 ="None"if _0xDA21.KillPlayer and _0x0446.TargetPlayer and _0x0426(_0x0446.TargetPlayer) then _0x17F0 ="Player"elseif _0xDA21.EventFarm then _0x17F0 ="Event"elseif _0xDA21.KillNPC then _0x17F0 ="NPC"elseif _0xDA21.Eat then _0x17F0 ="Food"end
-local _0x650B = _0x17F0 .."|".. _0x0446.NPCType .."|".. _0x0446.EventType .."|".. (_0x0446.TargetPlayer and _0x0446.TargetPlayer.Name or"")
-if _0x650B ~= _0x9B00 then _0x9B00 = _0x650B; _0x8883(nil); _0xF300 = nil end
-if _0x17F0 =="None"then return endif _0x60D0 and _0x60D0.Parent and _0x60D0:IsDescendantOf(workspace) then
-local _0x9931 = 8
-if _0xAE8E ~="Move"and _0x6AD5 <= _0x7FE9 then _0x9931 = 25 endif _0x17F0 =="Player"or (_0x17F0 =="Event"and _0x0446.EventType =="Boss") then _0x9931 = math.huge
-elseif _0xAE8E =="Move"then _0x9931 = 1.5 end
-if tick() - _0x8087 < _0x9931 then return end
-_0x5409[_0x60D0] = tick() + 10
+local function _0xF3AC()
+if _0x3B0C and _0x3B0C.Parent then return _0x3B0C end
+if tick() - _0x5991 < 2 then return nil end
+_0x5991 = tick()
+_0x3B0C = nil
+for _0xDF0E, _0x166D in ipairs(workspace:GetDescendants()) do
+local _0x1F55 = _0x166D.Name:lower()
+if _0x83EE.EventType =="Hotspot"then
+if _0x1F55:find("hotspot") and (_0x166D:IsA("BasePart") or _0x166D:IsA("Model")) then _0x3B0C = _0x166D; break end
+elseif _0x166D:IsA("Model") and not _0x1F55:find("minion") and (_0x1F55:find("boss") or _0x1F55:find("megamouth") or _0x1F55:find("megalodon")) then
+_0x3B0C = _0x166D; break
 end
-_0x8883(nil)
-local _0xAFE2 = _0x87C0.Position
-if _0x17F0 =="Player"then
-local _0xCDA5 = _0x0426(_0x0446.TargetPlayer)
-_0x8883(_0xCDA5:FindFirstChild("Head") or _0xCDA5:FindFirstChildWhichIsA("BasePart", true),"Player")
-elseif _0x17F0 =="Event"then
-local _0x1BD8 = _0x40A2()
-if _0x1BD8 then
-if _0x0446.EventType =="Boss"then
-_0x8883(_0xC7D8(_0x1BD8),"NPC")
+end
+return _0x3B0C
+end
+local function _0xC101(inst, _0x79B2)
+_0xCB92, _0x847C, _0xB0E7 = inst, inst and _0x79B2 or"None", tick()
+_0x3059 = math.huge
+end
+local function _0xD6AF()
+local _0xDF0E, _0x6F46 = _0xAFC5()
+if not _0x6F46 then _0xC101(nil); return end
+local _0xA290 = _0x83EE.Toggles
+local _0xAE2C ="None"if _0xA290.KillPlayer and _0x83EE.TargetPlayer and _0x63DD(_0x83EE.TargetPlayer) then _0xAE2C ="Player"elseif _0xA290.EventFarm then _0xAE2C ="Event"elseif _0xA290.KillNPC then _0xAE2C ="NPC"elseif _0xA290.Eat then _0xAE2C ="Food"end
+local _0xF106 = _0xAE2C .."|".. _0x83EE.NPCType .."|".. _0x83EE.EventType .."|".. (_0x83EE.TargetPlayer and _0x83EE.TargetPlayer.Name or"")
+if _0xF106 ~= _0xB442 then _0xB442 = _0xF106; _0xC101(nil); _0x3B0C = nil end
+if _0xAE2C =="None"then return endif _0xCB92 and _0xCB92.Parent and _0xCB92:IsDescendantOf(workspace) then
+local _0xC143 = 8
+if _0x847C ~="Move"and _0x3059 <= _0x3FB2 then _0xC143 = 25 endif _0xAE2C =="Player"or (_0xAE2C =="Event"and _0x83EE.EventType =="Boss") then _0xC143 = math.huge
+elseif _0x847C =="Move"then _0xC143 = 1.5 end
+if tick() - _0xB0E7 < _0xC143 then return end
+_0x1389[_0xCB92] = tick() + 10
+end
+_0xC101(nil)
+local _0x0C46 = _0x6F46.Position
+if _0xAE2C =="Player"then
+local _0x24C0 = _0x63DD(_0x83EE.TargetPlayer)
+_0xC101(_0x24C0:FindFirstChild("Head") or _0x24C0:FindFirstChildWhichIsA("BasePart", true),"Player")
+elseif _0xAE2C =="Event"then
+local _0x8320 = _0xF3AC()
+if _0x8320 then
+if _0x83EE.EventType =="Boss"then
+_0xC101(_0x1D2C(_0x8320),"NPC")
 else
-local _0x4297 = _0xE499(_0x1BD8)
-local _0x8E79 = _0x4297 and _0x414C(_0xAFE2, _0x4297, 80)
-if _0x8E79 then _0x8883(_0x8E79,"Food") else _0x8883(_0xC7D8(_0x1BD8),"Move") end
+local _0xE3B8 = _0xF039(_0x8320)
+local _0xD4AE = _0xE3B8 and _0x1A0B(_0x0C46, _0xE3B8, 80)
+if _0xD4AE then _0xC101(_0xD4AE,"Food") else _0xC101(_0x1D2C(_0x8320),"Move") end
 end
 end
-elseif _0x17F0 =="NPC"then
-_0x8883(_0x7DEF(_0xAFE2),"NPC")
-elseif _0x17F0 =="Food"then
-_0x8883(_0x414C(_0xAFE2),"Food")
+elseif _0xAE2C =="NPC"then
+_0xC101(_0x3D72(_0x0C46),"NPC")
+elseif _0xAE2C =="Food"then
+_0xC101(_0x1A0B(_0x0C46),"Food")
 end
 end
 task.spawn(function()
-while _0xAC07 do
-pcall(_0x4E85)
-if _0xAE8E ~="None"and _0x60D0 then
-_0xF022(_0x60D0.Name); _0xC45C(_0xAE8E, _0x4058.Good)
-_0xA04F(_0x6AD5 == math.huge and"-"or string.format("%.1f studs", _0x6AD5))
-_0x1F65.Text ="Farming · ".. _0xAE8E; _0xB216.BackgroundColor3 = _0x4058.Good
+while _0x3635 do
+pcall(_0xD6AF)
+if _0x847C ~="None"and _0xCB92 then
+_0x329D(_0xCB92.Name); _0xF620(_0x847C, _0x9140.Good)
+_0xA02C(_0x3059 == math.huge and"-"or string.format("%.1f studs", _0x3059))
+_0xCC01.Text ="Farming · ".. _0x847C; _0xCBBB.BackgroundColor3 = _0x9140.Good
 else
-_0xF022("-"); _0xA04F("-")
-if _0xBBEF() then
-_0xC45C("Searching...", _0x4058.AccentLight); _0x1F65.Text ="Searching..."; _0xB216.BackgroundColor3 = _0x4058.AccentLight
+_0x329D("-"); _0xA02C("-")
+if _0xF61D() then
+_0xF620("Searching...", _0x9140.AccentLight); _0xCC01.Text ="Searching..."; _0xCBBB.BackgroundColor3 = _0x9140.AccentLight
 else
-_0xC45C("Idle"); _0x1F65.Text ="Idle"; _0xB216.BackgroundColor3 = _0x4058.TextDim
+_0xF620("Idle"); _0xCC01.Text ="Idle"; _0xCBBB.BackgroundColor3 = _0x9140.TextDim
 end
 end
-_0xD637(tostring(_0x2273))
-_0x79FA(_0x885D)
-_0x8903(tostring(_0x76D9), _0x76D9 > 0 and _0x4058.AccentLight or _0x4058.Text)
-_0xD4A0(_0x721F or"none", _0x721F and _0x4058.Danger or _0x4058.TextDim)
-if _0xBAF2 then print("[Autofarm] target:", _0x60D0 and _0x60D0:GetFullName() or"nil","| type:", _0xAE8E) end
+_0x2A12(tostring(_0xD948))
+_0x7B90(_0xFBA8)
+_0xC470(tostring(_0xD671), _0xD671 > 0 and _0x9140.AccentLight or _0x9140.Text)
+_0xCC21(_0x3251 or"none", _0x3251 and _0x9140.Danger or _0x9140.TextDim)
+if _0x45C0 then print("[Autofarm] target:", _0xCB92 and _0xCB92:GetFullName() or"nil","| type:", _0x847C) end
 task.wait(0.1)
 end
-end)_0x6EBB(_0xDC4F.InputBegan:Connect(function(input, gp)
-if gp or _0xD99F or input.KeyCode == Enum.KeyCode.Unknown then return end
-local _0xEFB3 = _0x0446.Keybinds
-if input.KeyCode == _0xEFB3.UI then
-if _0xC1E5 then _0xC1E5:Destroy(); _0xC1E5 = nil; _0x9E87.Visible = true
-else _0x9E87.Visible = not _0x9E87.Visible end
-_0xDC29.Visible = _0x9E87.Visible
+end)_0x99D0(_0xDC44.InputBegan:Connect(function(input, gp)
+if gp or _0x52F9 or input.KeyCode == Enum.KeyCode.Unknown then return end
+local _0x3A9C = _0x83EE.Keybinds
+if input.KeyCode == _0x3A9C.UI then
+if _0xA0B4 then _0xA0B4:Destroy(); _0xA0B4 = nil; _0xC954.Visible = true
+else _0xC954.Visible = not _0xC954.Visible end
+_0x03FE.Visible = _0xC954.Visible
 else
-for _0x70AE, _0x650B in ipairs({"Eat","KillNPC","KillPlayer","Hitbox"}) do
-if input.KeyCode == _0xEFB3[_0x650B] then _0xF7CF[_0x650B].Set(not _0x0446.Toggles[_0x650B]) end
+for _0xDF0E, _0xF106 in ipairs({"Eat","KillNPC","KillPlayer","Hitbox"}) do
+if input.KeyCode == _0x3A9C[_0xF106] then _0x2079[_0xF106].Set(not _0x83EE.Toggles[_0xF106]) end
 end
 end
-end))_0x6EBB(_0x283A.Idled:Connect(function()
-if _0x0446.Toggles.AntiAfk then
+end))_0x99D0(_0xA627.Idled:Connect(function()
+if _0x83EE.Toggles.AntiAfk then
 pcall(function()
-local _0xAC16 = game:GetService("VirtualUser")
-_0xAC16:CaptureController(); _0xAC16:ClickButton2(Vector2.new(0, 0))
+local _0x41B6 = game:GetService("VirtualUser")
+_0x41B6:CaptureController(); _0x41B6:ClickButton2(Vector2.new(0, 0))
 end)
 end
-end))_0x6EBB(_0xD515.Heartbeat:Connect(function()
-if not _0xAC07 then return end
-if not _0x0446.Toggles.ESP then
-for _0x70AE, _0xBBCC in pairs(_0x2146:GetChildren()) do _0xBBCC:Destroy() end
+end))_0x99D0(_0x5D1C.Heartbeat:Connect(function()
+if not _0x3635 then return end
+if not _0x83EE.Toggles.ESP then
+for _0xDF0E, _0x166D in pairs(_0x2310:GetChildren()) do _0x166D:Destroy() end
 return
 end
-for _0x70AE, _0x078F in pairs(_0x2146:GetChildren()) do
-if not _0x2B63:FindFirstChild(_0x078F.Name) then _0x078F:Destroy() end
+for _0xDF0E, _0xE3EF in pairs(_0x2310:GetChildren()) do
+if not _0xB81D:FindFirstChild(_0xE3EF.Name) then _0xE3EF:Destroy() end
 end
-for _0x70AE, _0xAFE2 in pairs(_0x2B63:GetPlayers()) do
-local _0x9DEC = _0xAFE2 ~= _0x283A and _0x0426(_0xAFE2)
-if _0x9DEC then
-local _0x078F = _0x2146:FindFirstChild(_0xAFE2.Name)
-if not _0x078F then _0x078F = Instance.new("Highlight"); _0x078F.Name = _0xAFE2.Name; _0x078F.Parent = _0x2146 end
-if _0x078F.Adornee ~= _0x9DEC then _0x078F.Adornee = _0x9DEC end
-_0x078F.FillColor = _0x0446.ESPColor
-_0x078F.OutlineColor = _0x0446.ESPColor
-_0x078F.FillTransparency = _0x0446.Values.ESPTransparency / 100
+for _0xDF0E, _0x0C46 in pairs(_0xB81D:GetPlayers()) do
+local _0x7293 = _0x0C46 ~= _0xA627 and _0x63DD(_0x0C46)
+if _0x7293 then
+local _0xE3EF = _0x2310:FindFirstChild(_0x0C46.Name)
+if not _0xE3EF then _0xE3EF = Instance.new("Highlight"); _0xE3EF.Name = _0x0C46.Name; _0xE3EF.Parent = _0x2310 end
+if _0xE3EF.Adornee ~= _0x7293 then _0xE3EF.Adornee = _0x7293 end
+_0xE3EF.FillColor = _0x83EE.ESPColor
+_0xE3EF.OutlineColor = _0x83EE.ESPColor
+_0xE3EF.FillTransparency = _0x83EE.Values.ESPTransparency / 100
 end
 end
-end))if _0xB948 then
-_0x6EBB(_0xB948.OnClientEvent:Connect(function(cur, max)
-if _0x0446.Toggles.AutoHeal and type(cur) =="number"and type(max) =="number"and max > 0 and cur / max < 0.5 and tick() - _0xE40B > 3 then
-_0xE40B = tick()
-pcall(function() _0x93D4:InvokeServer(_0x0446.SelectedFish); _0x0E92:FireServer() end)
+end))if _0xA4A1 then
+_0x99D0(_0xA4A1.OnClientEvent:Connect(function(cur, max)
+if _0x83EE.Toggles.AutoHeal and type(cur) =="number"and type(max) =="number"and max > 0 and cur / max < 0.5 and tick() - _0xD40E > 3 then
+_0xD40E = tick()
+pcall(function() _0xBF61:InvokeServer(_0x83EE.SelectedFish); _0xC94D:FireServer() end)
 end
 end))
-endlocal function _0xB583(_0x9DEC)
-local _0xC0E8, _0xF8AC, _0x1E30 = pcall(function() local _0xD6F3, _0xCA45 = _0x9DEC:GetBoundingBox(); return _0xD6F3, _0xCA45 end)
-if not _0xC0E8 then return end
-local _0xB399 = math.max(_0x1E30.X, _0x1E30.Y, _0x1E30.Z) * 3
-local _0x173F = Instance.new("Part")
-_0x173F.Name ="ExpandedHitbox"; _0x173F.Size = Vector3.new(_0xB399, _0xB399, _0xB399); _0x173F.CFrame = _0xF8AC
-_0x173F.Transparency = 0.85; _0x173F.Color = _0x4058.Accent
-_0x173F.CanCollide = false; _0x173F.CanQuery = true; _0x173F.Massless = true
-_0x173F.Parent = _0x9DEC
-local _0x95D8 = _0xC7D8(_0x9DEC)
-if _0x95D8 then
-local _0x50F9 = Instance.new("WeldConstraint"); _0x50F9.Part0 = _0x173F; _0x50F9.Part1 = _0x95D8; _0x50F9.Parent = _0x173F
+endlocal function _0x9FA8(_0x7293)
+local _0x7F9D, _0x9A21, _0x2846 = pcall(function() local _0xB7D1, _0x2E49 = _0x7293:GetBoundingBox(); return _0xB7D1, _0x2E49 end)
+if not _0x7F9D then return end
+local _0x4E29 = math.max(_0x2846.X, _0x2846.Y, _0x2846.Z) * 3
+local _0x6202 = Instance.new("Part")
+_0x6202.Name ="ExpandedHitbox"; _0x6202.Size = Vector3.new(_0x4E29, _0x4E29, _0x4E29); _0x6202.CFrame = _0x9A21
+_0x6202.Transparency = 0.85; _0x6202.Color = _0x9140.Accent
+_0x6202.CanCollide = false; _0x6202.CanQuery = true; _0x6202.Massless = true
+_0x6202.Parent = _0x7293
+local _0xDE7D = _0x1D2C(_0x7293)
+if _0xDE7D then
+local _0x4130 = Instance.new("WeldConstraint"); _0x4130.Part0 = _0x6202; _0x4130.Part1 = _0xDE7D; _0x4130.Parent = _0x6202
 end
-_0x6844[_0x9DEC] = _0x173F
+_0xEED2[_0x7293] = _0x6202
 end
-_0x6EBB(_0xD515.Heartbeat:Connect(function()
-if not _0xAC07 then return end
-if not _0x0446.Toggles.Hitbox then
-for _0x70AE, hb in pairs(_0x6844) do pcall(function() hb:Destroy() end) end
-_0x6844 = {}
+_0x99D0(_0x5D1C.Heartbeat:Connect(function()
+if not _0x3635 then return end
+if not _0x83EE.Toggles.Hitbox then
+for _0xDF0E, hb in pairs(_0xEED2) do pcall(function() hb:Destroy() end) end
+_0xEED2 = {}
 return
 end
-for _0x01C0 in pairs(_0x6844) do if not _0x01C0.Parent then _0x6844[_0x01C0] = nil end end
-for _0x70AE, _0xAFE2 in pairs(_0x2B63:GetPlayers()) do
-local _0x01C0 = _0xAFE2 ~= _0x283A and _0x0426(_0xAFE2)
-if _0x01C0 and not _0x6844[_0x01C0] then _0xB583(_0x01C0) end
+for _0x4194 in pairs(_0xEED2) do if not _0x4194.Parent then _0xEED2[_0x4194] = nil end end
+for _0xDF0E, _0x0C46 in pairs(_0xB81D:GetPlayers()) do
+local _0x4194 = _0x0C46 ~= _0xA627 and _0x63DD(_0x0C46)
+if _0x4194 and not _0xEED2[_0x4194] then _0x9FA8(_0x4194) end
 end
-local _0x8787 = workspace:FindFirstChild("NPCs")
-if _0x8787 then
-for _0x70AE, _0xBBCC in pairs(_0x8787:GetChildren()) do
-if _0xBBCC:IsA("Model") and not _0x6844[_0xBBCC] then _0xB583(_0xBBCC) end
-end
-end
-end))local _0x4B6C, _0xA766 = {}, 0
-local _0x5542, _0x637F = false, false
-local _0x0D6E, _0xC18F, _0x98A7 = nil, 0, 0
-local function _0xC2BF(_0x5EED)
-if _0x5EED then
-if _0x3F00 and tick() - _0xA766 > 1 then
-_0xA766 = tick()
-for _0x70AE, _0x8A04 in ipairs(_0x3F00:GetDescendants()) do
-if _0x8A04:IsA("BasePart") and _0x4B6C[_0x8A04] == nil then _0x4B6C[_0x8A04] = _0x8A04.CanCollide end
+local _0xDE15 = workspace:FindFirstChild("NPCs")
+if _0xDE15 then
+for _0xDF0E, _0x166D in pairs(_0xDE15:GetChildren()) do
+if _0x166D:IsA("Model") and not _0xEED2[_0x166D] then _0x9FA8(_0x166D) end
 end
 end
-for part in pairs(_0x4B6C) do
-if part.Parent then part.CanCollide = false else _0x4B6C[part] = nil end
+end))local _0x3D2F, _0x9275 = {}, 0
+local _0xF0C6, _0xC024 = false, false
+local _0xD83E, _0x1880, _0x5D23 = nil, 0, 0
+local function _0xACE6(_0xDFB9)
+if _0xDFB9 then
+if _0xB634 and tick() - _0x9275 > 1 then
+_0x9275 = tick()
+for _0xDF0E, _0x66C0 in ipairs(_0xB634:GetDescendants()) do
+if _0x66C0:IsA("BasePart") and _0x3D2F[_0x66C0] == nil then _0x3D2F[_0x66C0] = _0x66C0.CanCollide end
 end
-elseif next(_0x4B6C) then
-for part, orig in pairs(_0x4B6C) do
+end
+for part in pairs(_0x3D2F) do
+if part.Parent then part.CanCollide = false else _0x3D2F[part] = nil end
+end
+elseif next(_0x3D2F) then
+for part, orig in pairs(_0x3D2F) do
 if part.Parent then part.CanCollide = orig end
 end
-_0x4B6C = {}
+_0x3D2F = {}
 end
-end_0x6EBB(_0xD515.Stepped:Connect(function()
-if not _0xAC07 then return end
-local _0x98EE = _0xBBEF()
-if _0x5542 and not _0x98EE thenif _0x637F and _0x3F00 and _0x3F00.Parent then
-pcall(function() _0x3F00:PivotTo(_0x3F00:GetPivot() + Vector3.new(0, _0x0446.Values.BelowOffset + 3, 0)) end)
+end_0x99D0(_0x5D1C.Stepped:Connect(function()
+if not _0x3635 then return end
+local _0x3DB0 = _0xF61D()
+if _0xF0C6 and not _0x3DB0 thenif _0xC024 and _0xB634 and _0xB634.Parent then
+pcall(function() _0xB634:PivotTo(_0xB634:GetPivot() + Vector3.new(0, _0x83EE.Values.BelowOffset + 3, 0)) end)
 end
-_0x637F = false
-_0x0D6E = nil
+_0xC024 = false
+_0xD83E = nil
 end
-_0x5542 = _0x98EE
-_0xC2BF(_0x0446.Toggles.Noclip and _0x98EE and _0x3F00 ~= nil and _0x3F00.Parent ~= nil)
-end))_0x6EBB(_0xD515.Heartbeat:Connect(function(dt)
-if not _0xAC07 or not _0xBBEF() then return end
-local _0x040D = _0x60D0
-if not _0x040D or not _0x040D.Parent or _0xAE8E =="None"then _0x0D6E = nil; return end
-local _0x9DEC, _0x87C0 = _0xB61D()
-if not _0x9DEC or not _0x87C0 then _0x0D6E = nil; return end
-local _0x2F12 = _0xE499(_0x040D)
-if not _0x2F12 then return end
-local _0x0650 = _0x9DEC:GetPivot()if _0x0D6E and (_0x0650.Position - _0x0D6E).Magnitude > 10 then
-_0x76D9 += 1
-_0xC18F = tick() + 0.4
-_0x98A7 = tick() + 8
-_0x5409[_0x040D] = tick() + 6
-_0x8883(nil)
-_0x0D6E = nil
+_0xF0C6 = _0x3DB0
+_0xACE6(_0x83EE.Toggles.Noclip and _0x3DB0 and _0xB634 ~= nil and _0xB634.Parent ~= nil)
+end))_0x99D0(_0x5D1C.Heartbeat:Connect(function(dt)
+if not _0x3635 or not _0xF61D() then return end
+local _0x1E4D = _0xCB92
+if not _0x1E4D or not _0x1E4D.Parent or _0x847C =="None"then _0xD83E = nil; return end
+local _0x7293, _0x6F46 = _0xAFC5()
+if not _0x7293 or not _0x6F46 then _0xD83E = nil; return end
+local _0xC775 = _0xF039(_0x1E4D)
+if not _0xC775 then return end
+local _0x8321 = _0x7293:GetPivot()if _0xD83E and (_0x8321.Position - _0xD83E).Magnitude > 10 then
+_0xD671 += 1
+_0x1880 = tick() + 0.4
+_0x5D23 = tick() + 8
+_0x1389[_0x1E4D] = tick() + 6
+_0xC101(nil)
+_0xD83E = nil
 return
 end
-if tick() < _0xC18F then return endlocal _0x077E = _0x0446.Toggles.FarmBelow and (_0xAE8E =="Food"or _0xAE8E =="NPC")
-if _0x077E then _0x637F = true end
-local _0xD2E6 = _0x077E and (_0x2F12 - Vector3.new(0, _0x0446.Values.BelowOffset, 0)) or _0x2F12
-local _0x9567 = _0xD2E6 - _0x87C0.Position
-local _0x35A4 = _0x9567.Magnitude
-local _0xF2E5 = _0x0446.Values.FarmSpeed
-if _0x0446.Toggles.AutoThrottle and tick() < _0x98A7 then _0xF2E5 = _0xF2E5 * 0.5 end
-if _0x35A4 < 8 then _0xF2E5 = _0xF2E5 * math.max(0.3, _0x35A4 / 8) endlocal _0x681B = 0
-if _0x35A4 > _0x3D57 then _0x681B = math.min(_0xF2E5 * math.min(dt, 0.05), _0x35A4 - _0x3D57) endlocal _0x3816 = _0x0650
-if _0x0446.Toggles.FaceTarget and _0xAE8E ~="Move"then
-local _0x756B = _0x2F12 - _0x0650.Position
-if _0x756B.Magnitude > 0.5 then
-local _0x7F2E = (math.abs(_0x756B.Unit.Y) > 0.97) and Vector3.new(0, 0, 1) or Vector3.new(0, 1, 0)
-_0x3816 = _0x0650:Lerp(CFrame.lookAt(_0x0650.Position, _0x2F12, _0x7F2E), math.min(1, dt * 10))
+if tick() < _0x1880 then return endlocal _0x4FD3 = _0x83EE.Toggles.FarmBelow and (_0x847C =="Food"or _0x847C =="NPC")
+if _0x4FD3 then _0xC024 = true end
+local _0x1B35 = _0x4FD3 and (_0xC775 - Vector3.new(0, _0x83EE.Values.BelowOffset, 0)) or _0xC775
+local _0x92B2 = _0x1B35 - _0x6F46.Position
+local _0xF453 = _0x92B2.Magnitude
+local _0xEF94 = _0x83EE.Values.FarmSpeed
+if _0x83EE.Toggles.AutoThrottle and tick() < _0x5D23 then _0xEF94 = _0xEF94 * 0.5 end
+if _0xF453 < 8 then _0xEF94 = _0xEF94 * math.max(0.3, _0xF453 / 8) endlocal _0xCB71 = 0
+if _0xF453 > _0x7AC3 then _0xCB71 = math.min(_0xEF94 * math.min(dt, 0.05), _0xF453 - _0x7AC3) endlocal _0xB10D = _0x8321
+if _0x83EE.Toggles.FaceTarget and _0x847C ~="Move"then
+local _0x8D8F = _0xC775 - _0x8321.Position
+if _0x8D8F.Magnitude > 0.5 then
+local _0xDC13 = (math.abs(_0x8D8F.Unit.Y) > 0.97) and Vector3.new(0, 0, 1) or Vector3.new(0, 1, 0)
+_0xB10D = _0x8321:Lerp(CFrame.lookAt(_0x8321.Position, _0xC775, _0xDC13), math.min(1, dt * 10))
 end
 end
-if _0x681B > 0 then _0x3816 = _0x3816 + (_0x9567 / _0x35A4) * _0x681B end
+if _0xCB71 > 0 then _0xB10D = _0xB10D + (_0x92B2 / _0xF453) * _0xCB71 end
 pcall(function()
-_0x9DEC:PivotTo(_0x3816)local _0x95B2 = _0x9DEC.PrimaryPart or _0x87C0
-_0x95B2.AssemblyLinearVelocity = Vector3.zero
-_0x95B2.AssemblyAngularVelocity = Vector3.zero
+_0x7293:PivotTo(_0xB10D)local _0xDC58 = _0x7293.PrimaryPart or _0x6F46
+_0xDC58.AssemblyLinearVelocity = Vector3.zero
+_0xDC58.AssemblyAngularVelocity = Vector3.zero
 end)
-_0x0D6E = _0x3816.Position
-local _0x5ADE = (_0x2F12 - _0x87C0.Position).Magnitude
-_0x6AD5 = _0x5ADE
-if _0xAE8E =="Move"or _0x5ADE > _0x7FE9 then return end
-if tick() - _0x077D >= _0x0446.Values.BiteDelay / 1000 then
-_0x077D = tick()
-local _0xC0E8, _0xA2C3 = pcall(function()
-if _0xAE8E =="Food"then
-_0xF9FD(_0x7FE1, _0x040D, _0x5ADE, _0x2F12)
-elseif _0x8D05 then
-local _0x915F = (_0xAE8E =="Player"and _0x040D:IsA("BasePart") and _0x040D.Parent) or _0x040D
-_0xF9FD(_0x8D05, _0x915F, _0x5ADE, _0x2F12)
+_0xD83E = _0xB10D.Position
+local _0x552C = (_0xC775 - _0x6F46.Position).Magnitude
+_0x3059 = _0x552C
+if _0x847C =="Move"or _0x552C > _0x3FB2 then return end
+if tick() - _0x193A >= _0x83EE.Values.BiteDelay / 1000 then
+_0x193A = tick()
+local _0x7F9D, _0xFEA3 = pcall(function()
+if _0x847C =="Food"then
+_0x4985(_0xB98B, _0x1E4D, _0x552C, _0xC775)
+elseif _0x1F07 then
+local _0xD4D1 = (_0x847C =="Player"and _0x1E4D:IsA("BasePart") and _0x1E4D.Parent) or _0x1E4D
+_0x4985(_0x1F07, _0xD4D1, _0x552C, _0xC775)
 end
 end)
-if _0xC0E8 then _0x2273 += 1; _0x721F = nil else _0x721F = tostring(_0xA2C3) end
-if _0xBAF2 then print(string.format("[Autofarm] BITE %s | dist=%.2f | type=%s", _0x040D.Name, _0x5ADE, _0xAE8E)) end
+if _0x7F9D then _0xD948 += 1; _0x3251 = nil else _0x3251 = tostring(_0xFEA3) end
+if _0x45C0 then print(string.format("[Autofarm] BITE %s | dist=%.2f | type=%s", _0x1E4D.Name, _0x552C, _0x847C)) end
 end
 end))task.spawn(function()
-local _0xC43A ="QuantumConfigs/Default.json"if isfile and isfile(_0xC43A) then
-local _0xB399, _0x7572 = pcall(function() return _0x5458:JSONDecode(readfile(_0xC43A)) end)
-if _0xB399 and type(_0x7572) =="table"and not (_0x7572.Toggles and _0x7572.Toggles.AutoLoad == false) then _0x2E85("Default") end
+local _0x1C18 ="QuantumConfigs/Default.json"if isfile and isfile(_0x1C18) then
+local _0x4E29, _0xF308 = pcall(function() return _0xED31:JSONDecode(readfile(_0x1C18)) end)
+if _0x4E29 and type(_0xF308) =="table"and not (_0xF308.Toggles and _0xF308.Toggles.AutoLoad == false) then _0x7AD6("Default") end
 end
 end)
 print("[Quantum] Loaded.")
